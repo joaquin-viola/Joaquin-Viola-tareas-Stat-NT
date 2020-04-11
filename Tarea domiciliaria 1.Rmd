@@ -183,30 +183,23 @@ Sea `x <- c(3,4,5,-2,1)`, `ordenar_x(x)` devuelve `c(-2,1,3,4,5)`.
 
 ```{r}
 ordenar_x=function(x){
- i = 1
- while(i<length(x)){
-   for(i in 1:length(x)){
-     if (x[i+1]<x[i]){
-       a=x[i]
-       b=x[i+1]
-       x[i]=b
-       x[i+1]=a
-     }
-   }
- i=i+1  
- }
-}
-ordenar_prueba=function(x){
-  for(i in 1:length(x-1)){
-    for (e in i+1:length(x)){
-      if(x[e]<=x[i]){
-        a=x[i]
-        b=x[e]
-        x[i]=b
-        x[e]=a
+   for(i in 1:(length(x)-1)){
+    for (e in (i+1):length(x)){
+      if(x[e]<x[i]){
+        a=x[e]
+        b=x[i]
+        x[i]=a
+        x[e]=b
       }
     }
   }
-}
+print(x)}
+```
+
+```{r}
+y=c(3,1,9,5,6,7)
+z=c(8,7,6,5,4,3,2,1)
+ordenar_x(y)
+ordenar_x(z)
 ```
 Para testear tu función, generá dos vectores numéricos cualquiera y ponelos como argumento en `ordenar_x`. 
