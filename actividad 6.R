@@ -18,4 +18,4 @@ disp6=ggplot(datos, aes(hwy,cty, colour= class)) + labs(title="Millas por galon"
 #Esta bien el codigo pero en el curso hacemos reportes dinamicos, como seria este, en rmarkdown!
 #Te hago el resto de los comentarios por mail porque acá se pierden.
 #Las entregas son siempre en rmarkdown no en .R.
-#Igualmente te pongo 7/10!
+#Igualmente te pongo 7.5/10!
