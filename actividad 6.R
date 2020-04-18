@@ -13,3 +13,9 @@ disp3=ggplot(datos, aes(hwy,cty)) + labs(title="Millas por galon", subtitle = "C
 disp4=ggplot(datos, aes(hwy,cty, colour= class)) + labs(title="Millas por galon", subtitle = "Cuantas millas por galon rinde cada auto", x="En Ruta", y="En Ciudad") + geom_point()
 disp5=ggplot(datos, aes(hwy,cty, colour= class)) + labs(title="Millas por galon", subtitle = "Cuantas millas por galon rinde cada auto", x="En Ruta", y="En Ciudad") + geom_point() + scale_color_brewer(palette="Dark2")
 disp6=ggplot(datos, aes(hwy,cty, colour= class)) + labs(title="Millas por galon", subtitle = "Cuantas millas por galon rinde cada auto", x="En Ruta", y="En Ciudad") + geom_point() + facet_wrap(vars(class))
+
+#cOMENTARIOS!
+#Esta bien el codigo pero en el curso hacemos reportes dinamicos, como seria este, en rmarkdown!
+#Te hago el resto de los comentarios por mail porque acá se pierden.
+#Las entregas son siempre en rmarkdown no en .R.
+#Igualmente te pongo 7.5/10!
