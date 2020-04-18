@@ -148,7 +148,7 @@ i=1,
     i <- i + 1})
 sumar_si=function(x){
   suma <- 0
-i <- 1
+  i <- 1
 ifelse(length(x)<5, suma<-0, 
        ifelse(length(x)==5, while(i < 6){
  suma = suma + xsub[i]      
