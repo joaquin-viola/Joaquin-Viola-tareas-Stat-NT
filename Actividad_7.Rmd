@@ -50,13 +50,13 @@ graf5<-graf4 + scale_color_brewer(palette="Dark2")
 
 1. Incluir un suavizado lineal usando `geom_smooth()`.
 ```{r}
-graf6<- graf5 + geom_smooth()
+graf6<- graf5 + geom_smooth(method="lm")
 ```
 
 2. Cambiar el color de la linea a negro.
 
 ```{r}
-graf7<-graf5 + geom_smooth(colour="black")
+graf7<-graf5 + geom_smooth(method="lm",colour="black")
 ```
 
 # Ejercicio 3
