@@ -37,8 +37,9 @@ graf3<-graf2 + scale_color_discrete("Fumador")
 4. Cambiá la posición de la leyenda en la parte inferior del gráfico usando `theme`
 
 5. Cambiar la paleta de colores a Dark2 usando `scale_color_brewer()`
-
-
+```{r}
+graf5<-graf3 + scale_color_brewer()
+```
 
 
 
