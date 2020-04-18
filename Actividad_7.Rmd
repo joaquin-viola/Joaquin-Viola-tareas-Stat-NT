@@ -38,7 +38,7 @@ graf3<-graf2 + scale_color_discrete("Fumador")
 
 5. Cambiar la paleta de colores a Dark2 usando `scale_color_brewer()`
 ```{r}
-graf5<-graf3 + scale_color_brewer()
+graf5<-graf3 + scale_color_brewer
 ```
 
 
