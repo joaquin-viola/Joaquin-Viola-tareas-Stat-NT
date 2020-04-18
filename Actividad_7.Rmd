@@ -35,10 +35,13 @@ graf2<-graf+ scale_x_continuous("Total gastado en dólares") + scale_y_continuou
 graf3<-graf2 + scale_color_discrete("Fumador")
 ```
 4. Cambiá la posición de la leyenda en la parte inferior del gráfico usando `theme`
+```{r}
+graf4<-graf3 + theme(legend.position = "bottom")
+```
 
 5. Cambiar la paleta de colores a Dark2 usando `scale_color_brewer()`
 ```{r}
-graf5<-graf3 + scale_color_brewer
+graf5<-graf4 + scale_color_brewer(palette="Dark2")
 ```
 
 
@@ -46,17 +49,37 @@ graf5<-graf3 + scale_color_brewer
 # Ejercicio 2
 
 1. Incluir un suavizado lineal usando `geom_smooth()`.
+```{r}
+graf6<- graf5 + geom_smooth()
+```
 
 2. Cambiar el color de la linea a negro.
 
+```{r}
+graf7<-graf5 + geom_smooth(colour="black")
+```
 
 # Ejercicio 3
 
 1. Hacer un gráfico de barras para la variable dia usando `geom_bar()`
 
+```{r}
+barra<-ggplot(propinas, aes(dia)) + geom_bar()
+```
+
 2. Colorear por día de la semana las barras usar el elemento estético `fill`
+```{r}
+barra1<-ggplot(propinas, aes(dia, fill=dia)) + geom_bar()
+```
 
 3. Ordena los días según frecuencia (usá `fct_infreq()` de la librería `forcats`).
-
+*tenemos que descargar la libreria forcats*
+```{r}
+barra2<-ggplot(propinas, aes(fct_infreq(dia))) + geom_bar()
+```
 
 4. Rotá el gráfico usando `coord_flip()`.
+
+```{r}
+barra3<-barra2 + coord_flip()
+```
