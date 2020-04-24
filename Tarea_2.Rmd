@@ -1,0 +1,44 @@
+---
+title: "Tarea 2"
+author: "Joaquin Viola"
+date: "24/4/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+*usaremos las librerias tidyverse y gapminder, esta ultima es un conjunto de datos de 6 variables, pais, continente, año, espectativa de vida, poblacion y PBI per capita
+```{r, echo=FALSE}
+library(tidyverse)
+library(gapminder)
+```
+```{r}
+datos<-gapminder
+```
+#Ejercicio 1
+```{r}
+ggplot(datos, aes(x=lifeExp, y=year, colour=continent)) + geom_point() + geom_smooth(method = lm, se=FALSE) + labs(x="Expectativa de vida", y="Año", colour="Continente", caption = "Evolucion de la expectativa de vida")
+```
+*El grafico muestra la expectativa de vida en distintos paises diferenciada por colores segun el continente y tienen una regresion lineal por continente*
+
+#Ejercicio 2
+## ¿Por que al quitar la capa de geom_point(), desaparecen los puntos pero siguen las lineas?
+```{r, echo= FALSE}
+ggplot(datos, aes(x=lifeExp, y=year, colour=continent)) + geom_smooth(method = lm, se=FALSE) + labs(x="Expectativa de vida", y="Año", colour="Continente", caption = "Evolucion de la expectativa de vida")
+```
+*Porque al quitar la capa geom_point(), no le decimos a R como queremos que nos muestre los datos que seleccionamos, pero geom_smooth() trabaja con los datos seleccionados dentro de ggplot(datos, aes()), por lo que los hace.*
+
+#Ejercicio 3
+## ¿De que manera se puede visualizar mejor los datos del grafico que se encuentra sobre cargado?
+*Haciendo distintos graficos uno al lado del otro separandolos por alguna variable, ya sea continente, o año*
+```{r}
+ggplot(datos, aes(x=gdpPercap, y=lifeExp, colour=continent)) + geom_point() + facet_wrap(~year) + labs(x = "PBI p/capita", y= "Expectativa de vida", caption = "Expectativa de vida y PBI p/capita a lo largo de los años")
+```
+#Ejercicio 4
+## Grafico de puntos de años y PBI/capita, separados por continente y regresion lineal por pais
+```{r, fig.width=100, fig.height=100}
+ggplot(datos, aes(x=year, y=gdpPercap, colour=country)) + geom_point() + theme(aspect.ratio = 1) + facet_wrap(~continent) + labs(x = "Año", y= "PBI/cabeza", caption = "Avance del PBI/cabeza en los años, separados por continente y refresion lineal de los paises") + geom_smooth(method=lm, se= FALSE)
+```
