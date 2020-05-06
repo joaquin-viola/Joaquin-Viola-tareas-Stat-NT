@@ -48,3 +48,17 @@ ggplot(datos, aes(x=year, y=gdpPercap, colour=country, size=1000)) + geom_point(
 ggplot(datos, aes(x=pop)) + geom_bar() + 
 facet_wrap(~year)
 ```
+
+#Ejercicio 6
+## Grafico de barras con la variable dvr de los datos mpg
+```{r, echo=FALSE}
+autos=as.data.frame(mpg)
+```
+*los datos estan guardados en un data frame con el nombre de autos*
+```{r}
+ggplot(autos, aes(x=drv)) + geom_bar(aes(fill=drv))+labs(x="Tipo de traccion", y="Cantidad", colour="Tracciones") + scale_color_brewer(palette="Dark2")
+```
+*dpnde 4 es 4X4, f traccion frontal y r traccion trasera*
+
+#Ejercicio 7
+##
