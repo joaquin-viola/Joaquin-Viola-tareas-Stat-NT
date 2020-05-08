@@ -47,5 +47,6 @@ filtro_2
 *son 5 los autos que cumplen esta condicion*
 ##Parte 3
 ```{r}
-
+filtro_3<-select(mpg, displ, hwy)
+filtro_3
 ```
