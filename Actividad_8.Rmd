@@ -31,7 +31,6 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 #Ejercicio 1
 ```{r}
 library(tidyverse)
-datos=as.data.frame(mpg)
 ```
 ##Parte 1
 ```{r}
@@ -47,6 +46,34 @@ filtro_2
 *son 5 los autos que cumplen esta condicion*
 ##Parte 3
 ```{r}
-filtro_3<-select(mpg, displ, hwy)
-filtro_3
+selec_1<-select(mpg, displ, hwy)
+selec_1
+```
+#Parte 4
+```{r}
+selec_2<-select(mpg, trans:hwy)
+selec_2
+```
+#Parte 5
+```{r}
+datos_1<-mpg %>% filter(manufacturer=="toyota"&model=="camry") %>% select(manufacturer, model, year, cyl, cty)
+datos_1
+```
+#Parte 6
+```{r}
+prom_1 <- mpg %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise_at(c("cty"), mean) %>% arrange(desc(cty))
+prom_1
+```
+*honda es la marca con mejor rendimiento promedio en ciudad y lincoln es la de peor rendimiento promedio en ciudad*
+#Parte 7
+```{r, echo=FALSE}
+library(plotrix)
+```
+```{r, echo=FALSE}
+prompri_1 <- mpg %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise_at(c("cty"), std.error) 
+prompri_2 <- mpg %>% select(manufacturer, cty) %>% group_by(manufacturer)
+```
+```{r}
+prom_2<- cbind(prom_1, prompri_1)
+prom_2
 ```
