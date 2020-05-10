@@ -69,11 +69,15 @@ prom_1
 ```{r, echo=FALSE}
 library(plotrix)
 ```
+
+```{r}
+prom_2<- mpg%>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(media=mean(cty), error=std.error(cty))
+```
+# Parte 8
 ```{r, echo=FALSE}
-prompri_1 <- mpg %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise_at(c("cty"), std.error) 
-prompri_2 <- mpg %>% select(manufacturer, cty) %>% group_by(manufacturer)
+prompri_1<- mpg %>%filter(year<2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(mean(cty))
+prompri_2 <- mpg %>% filter(year>=2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(mean(cty))
 ```
 ```{r}
-prom_2<- cbind(prom_1, prompri_1)
-prom_2
+prom_3<- cbind(prompri_1,prompri_2)
 ```
