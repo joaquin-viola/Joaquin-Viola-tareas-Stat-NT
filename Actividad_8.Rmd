@@ -74,6 +74,7 @@ library(plotrix)
 prom_2<- mpg%>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(media=mean(cty), error=std.error(cty))
 prom_2
 ```
+*no puedo hacer el rango*
 # Parte 8
 ```{r, echo=FALSE}
 prompri_1<- mpg %>%filter(year<2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(rendimiento_viejo=mean(cty))
