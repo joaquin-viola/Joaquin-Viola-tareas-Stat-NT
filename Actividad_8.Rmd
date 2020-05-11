@@ -29,7 +29,7 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 #Ejercicio 1
-```{r}
+```{r, echo=FALSE}
 library(tidyverse)
 ```
 ##Parte 1
@@ -72,12 +72,25 @@ library(plotrix)
 
 ```{r}
 prom_2<- mpg%>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(media=mean(cty), error=std.error(cty))
+prom_2
 ```
 # Parte 8
 ```{r, echo=FALSE}
-prompri_1<- mpg %>%filter(year<2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(mean(cty))
-prompri_2 <- mpg %>% filter(year>=2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(mean(cty))
+prompri_1<- mpg %>%filter(year<2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(rendimiento_viejo=mean(cty))
+prompri_2 <- mpg %>% filter(year>=2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(rendimiento_nuevo=mean(cty))
 ```
 ```{r}
 prom_3<- cbind(prompri_1,prompri_2)
+prom_3
+```
+
+# Parte 9
+```{r}
+aleat_1<- mpg %>% sample_n(3) %>% select(manufacturer, hwy) %>% group_by(manufacturer) %>% summarise(rend_ruta=mean(hwy)) %>% arrange(desc(rend_ruta))
+aleat_1
+```
+# Parte 10
+```{r}
+nueva_variable<- mpg%>% mutate(l_100 = 3.78541*100/(hwy*1.60934))
+nueva_variable
 ```
