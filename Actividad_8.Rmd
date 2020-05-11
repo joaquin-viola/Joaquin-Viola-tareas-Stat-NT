@@ -71,7 +71,7 @@ library(plotrix)
 ```
 
 ```{r}
-prom_2<- mpg%>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(media=mean(cty), error=std.error(cty))
+prom_2<- mpg%>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(media=mean(cty), error=std.error(cty), rango=max(cty)-mean(cty))
 prom_2
 ```
 *no puedo hacer el rango*
