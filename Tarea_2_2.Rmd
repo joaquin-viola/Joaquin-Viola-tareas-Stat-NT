@@ -68,5 +68,5 @@ ggplot(mpg, aes(x=drv)) + geom_bar(aes(fill=drv)) + labs(title = "Porcentaje por
 </div>
 
 <div class="alert alert-info">
-  <strong>Sobre la tarea en particular, faltaron algunas cosas, te conviene reproducir la solucion, cualquier duda avisame. 6.3/10! </strong> .
+  <strong>Sobre la tarea en particular, faltaron algunas cosas, te conviene reproducir la solucion, cualquier duda avisame. 6.5/10! </strong> .
 </div>
