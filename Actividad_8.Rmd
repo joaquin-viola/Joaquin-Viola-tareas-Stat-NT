@@ -29,6 +29,11 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 #Ejercicio 1
+
+<div class="alert alert-info">
+  <strong>lo que está de acá para arriba hasta el primer titulo R markdown hay que borrarlo, es lo que pone rmarkdown por defecto.</strong> .
+</div>
+
 ```{r, echo=FALSE}
 library(tidyverse)
 ```
@@ -65,6 +70,10 @@ prom_1 <- mpg %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summa
 prom_1
 ```
 *honda es la marca con mejor rendimiento promedio en ciudad y lincoln es la de peor rendimiento promedio en ciudad*
+
+<div class="alert alert-info">
+  <strong>Bien, el arrange no es tan conveniente si tuvieramos muchas marcas. Otra opción mas ajustada sería agregar un filter al final, para filtrar el máximo y el mínimo de la variable cty mean que creaste.</strong> .
+</div>
 #Parte 7
 ```{r, echo=FALSE}
 library(plotrix)
@@ -75,6 +84,11 @@ prom_2<- mpg%>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summari
 prom_2
 ```
 *no puedo hacer el rango*
+
+<div class="alert alert-info">
+  <strong>Acá R tira un error que dice que no pudo encontrar la funcion std.error. Esa funcion al menos dentro de los paquetes que tengo no existe. El rango está bien calculado y si le ponés una función que si exista para calcular el desvio estandar anda lo más bien. Probá con sd que es una función del paquete base.</strong> .
+</div>
+
 # Parte 8
 ```{r, echo=FALSE}
 prompri_1<- mpg %>%filter(year<2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(rendimiento_viejo=mean(cty))
@@ -85,13 +99,26 @@ prom_3<- cbind(prompri_1,prompri_2)
 prom_3
 ```
 
+<div class="alert alert-info">
+  <strong>una forma más corta es en vez de filtrar, agrupar por year menor (o mayor) a 2004. Eso hace una evaluación lógica y te crea grupos de verdaderos y falsos. En la solución colgada hay un ejemplo de esto.</strong> .
+</div>
+
 # Parte 9
 ```{r}
 aleat_1<- mpg %>% sample_n(3) %>% select(manufacturer, hwy) %>% group_by(manufacturer) %>% summarise(rend_ruta=mean(hwy)) %>% arrange(desc(rend_ruta))
 aleat_1
 ```
+
+<div class="alert alert-info">
+  <strong>Acá me parece que tenés un tema de que sample n selecciona filas al azar, y estas seleccionando 3 filas donde manufacturer se puede repetir. En realidad lo que hay que hacer es tomar muestra sobre los niveles de manufacturer, usando la función sample por ej. O primero agrupar por manufacturer, sacar los promedios, y luego si filtrar 3 filas.</strong> .
+</div>
+
 # Parte 10
 ```{r}
 nueva_variable<- mpg%>% mutate(l_100 = 3.78541*100/(hwy*1.60934))
 nueva_variable
 ```
+
+<div class="alert alert-info">
+  <strong>Muy buen trabajo 8.75/10!. Para futuras entregas te conviene agarrar el .rmd que subimos al eva, con la consigna, e ir respondiendo debajo de cada pregunta. Así te queda el informe mejor armado. Además en este .rmd te quedó al inicio lo que rmarkdown pone por defecto cada vez que creamos uno nuevo, eso podés borrarlo sin problema.</strong> .
+</div>
