@@ -31,23 +31,41 @@ ggplot(datos, aes(x=lifeExp, y=year, colour=continent)) + geom_smooth(method = l
 ```
 *Porque al quitar la capa geom_point(), no le decimos a R como queremos que nos muestre los datos que seleccionamos, pero geom_smooth() trabaja con los datos seleccionados dentro de ggplot(datos, aes()), por lo que los hace.*
 
+<div class="alert alert-info">
+  <strong>ok es por la idea de que ggplot2 trabaja con capas y le estamos indicando que los tome al inicio en ggplot.</strong> .
+</div>
+
 #Ejercicio 3
 ## ¿De que manera se puede visualizar mejor los datos del grafico que se encuentra sobre cargado?
 *Haciendo distintos graficos uno al lado del otro separandolos por alguna variable, ya sea continente, o año*
 ```{r, fig.height=10, fig.width=10}
 ggplot(datos, aes(x=gdpPercap, y=lifeExp, colour=continent)) + geom_point() + facet_wrap(~year) + labs(x = "PBI p/capita", y= "Expectativa de vida", caption = "Expectativa de vida y PBI p/capita a lo largo de los años", colour= "continente")
 ```
+
+<div class="alert alert-info">
+  <strong>Si acá en realidad conviene hacer facetas por continente para solucionar el problema de sobreploteo. Hacer facetas por year en realidad no nos soluciona el problema.</strong> .
+</div>
+
 #Ejercicio 4
 ## Grafico de puntos de años y PBI/capita, separados por continente y regresion lineal por pais
-```{r, fig.width=200, fig.height=200}
+```{r, fig.width=200, fig.height=200, eval = FALSE}
 ggplot(datos, aes(x=year, y=gdpPercap, colour=country, size=1000)) + geom_point() + theme(aspect.ratio = 1) + facet_wrap(~continent) + labs(x = "Año", y= "PBI/cabeza", caption = "Avance del PBI/cabeza en los años, separados por continente y refresion lineal de los paises", colour= "Pais") + geom_smooth(method=lm, se= FALSE) + theme(legend.position = "none")
 ```
+
+<div class="alert alert-info">
+  <strong>Acá habria que pasarle el argumento group para que agrupe por país.</strong> .
+</div>
+
 #Ejercicio 5
 ## Vere la evolucion de la poblacion por continente a lo largo de los años
 ```{r}
 ggplot(datos, aes(x=pop)) + geom_bar() + 
 facet_wrap(~year)
 ```
+
+<div class="alert alert-info">
+  <strong>Me aparece como que no se está mapeando nada.</strong> .
+</div>
 
 #Ejercicio 6
 ## Grafico de barras con la variable dvr de los datos mpg
@@ -62,3 +80,7 @@ ggplot(autos, aes(x=drv)) + geom_bar(aes(fill=drv))+labs(x="Tipo de traccion", y
 
 #Ejercicio 7
 ##
+
+<div class="alert alert-info">
+  <strong>Continuo y hago comentarios en el rmd Tarea 2 2</strong> .
+</div>
