@@ -1,0 +1,71 @@
+---
+title: "Actividad_9"
+author: "Joaquin Viola"
+date: "10/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+#Ejercicio 1
+```{r, echo=FALSE}
+library(tidyverse)
+```
+## Parte 1
+```{r}
+mpg %>% select_if(~is.character(.))
+```
+## Parte 2
+```{r}
+mpg %>% select_if(~mean(is.numeric(.))>20)
+```
+<div class="alert alert-info">
+  <strong>Acá en realidad fuera de la función media tenes que decirle que evalue si es numerica y luego que se cumpla que la media es mayor a 20.</strong> .
+</div>
+
+## Parte 3
+```{r, eval = FALSE}
+mpg %>% filter_at(is.numeric, ~sum(all_vars(.<2))>0)
+```
+
+<div class="alert alert-info">
+  <strong>Acá sería un filter all ya que queremos filtrar filas sobre todas las variables. Dentro de la función any vars le inidcamos la condición a cumplirse. Le agregue en el chunk eval false porque no me corría</strong> .
+</div>
+## Parte 4
+```{r}
+mpg %>% filter(cty>25 & hwy>25)
+```
+
+<div class="alert alert-info">
+  <strong>Esto para resolverlo con una scoped variant es usando un filter at, ya que se trata de una selección explícita sobre las variables cty y hwy.</strong> .
+</div>
+## Parte 5
+```{r}
+mpg %>% summarise_if(~is.numeric(.), ~mean(.))
+```
+
+<div class="alert alert-info">
+  <strong>Bien 5/10! Mismo comentarios al de la act 8 sobre la organización del documento. Para futuras entregas te conviene agarrar el .rmd que subimos al eva, con la consigna, e ir respondiendo debajo de cada pregunta. Así te queda el informe mejor armado. Además en este .rmd te quedó al inicio lo que rmarkdown pone por defecto cada vez que creamos uno nuevo, eso podés borrarlo sin problema.</strong> .
+</div>

@@ -1,0 +1,72 @@
+---
+title: "Tarea_2.2"
+author: "Joaquin Viola"
+date: "6/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r}
+library(tidyverse)
+library(gapminder)
+datos=gapminder
+```
+
+#Ejercicio 5
+## Vere la evolucion de la poblacion promedio por continente a lo largo de los anios
+```{r}
+ggplot(datos, aes(x=year, y=pop, colour=continent)) + geom_smooth(se=FALSE)
+```
+*En general se ha mantenido el orden, salvo Africa que cerca del 1980 paso a Oceania en poblacionm y Asia que ha tenido un crecimiento mayor que el resto de los continentes*
+
+#Ejercicio 6
+## con los datos de mpg, hacer una grafica de barra con la variable drv
+*la variable drv es el tipo de traccion, donde f es frontal, r trasera y 4 4X4*
+```{r}
+ggplot(mpg, aes(x=drv)) + geom_bar(aes(fill=drv)) + labs(title = "Cantidad por traccion", x="Tracciones", y="Cantidad")+ scale_color_brewer(palette = "Dark2")
+```
+
+#Ejercicio 7
+## Llevar el grafico anterior a porcentajes
+```{r}
+ggplot(mpg, aes(x=drv)) + geom_bar(aes(fill=drv)) + labs(title = "Porcentaje por traccion", x="Tracciones", y="Porcentaje")+ scale_color_brewer(palette = "Dark2") + scale_y_continuous(labels=scales::percent)
+```
+
+<div class="alert alert-info">
+  <strong>A este gráfico le falta algunas cosas para que quede bien. Primero que nada si notas en el eje y los porcentajes no tienen sentido ninguno, están mal calculados. Esto es porque hay que indicarle a R que y es una proporción, eso lo podes hacer pasandole y = ..prop... No te está tomando la paleta tampoco, es porque es scale fill brewer en lugar de color brewer lo que hay que usar, quedo mal en la letra.</strong> .
+</div>
+
+<div class="alert alert-info">
+  <strong>En general obre los caption, conviene siempre poner fig.cap en el chunk de codigo como dijimos en clase, así R los va numerando automaticamente y nos evitamos que alguna figura quede mal numerada si la cambiamos de lugar por ej. En novedades hay un mensaje publicado sobre esto.</strong> .
+</div>
+
+<div class="alert alert-info">
+  <strong>Mismo comentario que en acts 8 y 9 sobre la organización el rmd.Al inicio te queda lo que rmarkdown pone siempre por defecto, eso hay que borrarlo. Te conviene agarrar los .rmd con la letra que publicamos en el eva e ir respondiendo debajo de cada pregunt.</strong> .
+</div>
+
+<div class="alert alert-info">
+  <strong>Sobre la tarea en particular, faltaron algunas cosas, te conviene reproducir la solucion, cualquier duda avisame. 6.5/10! </strong> .
+</div>

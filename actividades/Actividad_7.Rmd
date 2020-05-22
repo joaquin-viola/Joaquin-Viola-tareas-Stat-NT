@@ -1,0 +1,101 @@
+---
+title: "Actividad 7"
+author: "Joaquin Viola"
+date: "18/4/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Esta actividad tiene que quedar disponible en su repositorio de GitHub con el resto de las actividades y tareas del curso. Asegurate que tanto Lucía como yo seamos colaboradoras de tu proyecto Tareas_STAT_NT.
+Recordar seleccionar en en opciones de proyecto, codificación de código UTF-8.
+
+Para esta tarea deberás usar los datos de propinas disponibles en EVA.
+
+# Ejercicio 1
+
+1. Hacer un gráfico de dispersión: componentes estéticos `x` total, `y` propina, `color` fuma
+```{r}
+library(tidyverse)
+propinas=read.csv("propina.csv")
+graf<-ggplot(propinas, aes(x=total, y= propina, colour=fuma)) + geom_point()
+graf
+```
+
+2. Cambiá el nombre de los ejes: `x` = "Total gastado en dólares", `y` = "Propina en dólares"
+```{r}
+graf2<-graf+ scale_x_continuous("Total gastado en dólares") + scale_y_continuous("Propina en dólares")
+graf2
+```
+
+3. Cambiá el nombre de la leyenda de `color` a "Fumador"
+```{r}
+graf3<-graf2 + scale_color_discrete("Fumador")
+graf3
+```
+4. Cambiá la posición de la leyenda en la parte inferior del gráfico usando `theme`
+```{r}
+graf4<-graf3 + theme(legend.position = "bottom")
+graf4
+```
+
+5. Cambiar la paleta de colores a Dark2 usando `scale_color_brewer()`
+```{r}
+graf5<-graf4 + scale_color_brewer(palette="Dark2")
+graf5
+```
+
+
+
+# Ejercicio 2
+
+1. Incluir un suavizado lineal usando `geom_smooth()`.
+```{r}
+graf6<- graf5 + geom_smooth(method="lm")
+graf6
+```
+
+2. Cambiar el color de la linea a negro.
+
+```{r}
+graf7<-graf5 + geom_smooth(method="lm",colour="black")
+graf7
+```
+
+# Ejercicio 3
+
+1. Hacer un gráfico de barras para la variable dia usando `geom_bar()`
+
+```{r}
+barra<-ggplot(propinas, aes(dia)) + geom_bar()
+barra
+```
+
+2. Colorear por día de la semana las barras usar el elemento estético `fill`
+```{r}
+barra1<-ggplot(propinas, aes(dia, fill=dia)) + geom_bar()
+barra1
+```
+
+3. Ordena los días según frecuencia (usá `fct_infreq()` de la librería `forcats`).
+*tenemos que descargar la libreria forcats*
+```{r}
+barra2<-ggplot(propinas, aes(fct_infreq(dia))) + geom_bar()
+barra2
+```
+
+4. Rotá el gráfico usando `coord_flip()`.
+
+```{r}
+barra3<-barra2 + coord_flip()
+barra3
+```
+
+
+<div class="alert alert-info">
+  <strong>Muy buen trabajo!, 10/10. Te agregué en cada chunk el nombre del gráfico en la última línea. Esto es porque no se estaba imprimiendo en el html porque los estabas asignando y no llamando. Podrias generar el gráfico sin asignarlo a ningun objeto (barra, barra1, barra2, etc) y no es necesario llamarlo después.</strong> .
+</div>

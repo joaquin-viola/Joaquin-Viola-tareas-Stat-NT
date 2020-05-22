@@ -1,0 +1,92 @@
+---
+title: "Revisión 2019"
+author: "NOMBRE: Joaquin Viola "
+date: "24/5/2019"
+output: pdf_document
+fig_caption: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.pos = 'hbpt', out.extra = '', message = FALSE, warning = FALSE)
+```
+
+## Explicativo sobre la prueba
+
+Por favor completá tu nombre en el preámbulo del archivo donde dice `author: "NOMBRE: "`.
+El examen es individual y cualquier apartamiento de esto invalidará la prueba. Puede consultar el libro del curso durante la revisión http://r4ds.had.co.nz así como el libro de ggplot2 pero no consultar otras fuentes de información.
+
+Los archivos y la información necesaria para desarrollar la prueba se encuentran en Eva en la Semana 9.
+
+La revisión debe quedar en tu repositorio PRIVADO de GitHub en una carpeta que se llame Revisión con el resto de las actividades y tareas del curso.  Parte de los puntos de la prueba consisten en que tu revisión sea reproducible y tu repositorio de GitHub esté bien organizado.  
+Además una vez finalizada la prueba debes mandarme el archivo pdf y Rmd a natalia@iesta.edu.uy  y por favor recordame tu usuario de GitHub para que sea más sencillo encontrar tu repositorio.
+
+Recordar que para que tengas la última versión de tu repositorio debes hacer `pull` a tu repositorio para no generar inconsistencias y antes de terminar subir tus cambios con `commit` y `push`.
+
+## Explicativo sobre los datos
+
+Los datos que vamos a utilizar en la prueba son datos extraídos del Estudio Longitudinal de Bienestar en el Uruguay llevado a cabo por el Instituto de Economía (iecon), el cual consiste en un relevamiento longitudinal representativo de los niños que concurren al sistema de educación primaria pública.
+
+La información es relevada en Olas en este caso vamos a usar datos de la tercer ola (2012) que contiene bases de personas, con información referente al niño y personas del hogar donde reside. 
+Los meta datos con información sobre las variables se encuentra en el archivo ola3_meta.csv.
+
+
+# Preguntas
+
+1. Usando la función `read_csv` del paquete `readr` cargá la base de datos `ola_3.csv` que se encuentra disponible en el EVA y a estos datos nombralos `personas`.
+```{r, message=FALSE}
+library(tidyverse)
+```
+```{r}
+personas<-read.csv("ola_3.csv")
+```
+2. Renombrá la variable `dpto_cod` como `depto`.
+```{r}
+personas<-personas %>% rename(depto=dpto_cod)
+```
+
+3. La variable `sexo` tiene tres valores,  recodificala para que el 1 sea `M` el 2 sea `F` y 9 sea `NS/NC` (no sabe). Guardá los nuevos datos en `personas_reco`.
+```{r}
+personas_reco<-personas %>% mutate(sexo=recode(sexo, '1'="M", '2'="F", '9'="NS/NC"))
+```
+
+4. Usando funciones de `dplyr` respondé ¿Cuál es la proporción de personas según sexo?
+```{r}
+personas_reco %>% group_by(sexo) %>% summarise(n=n()) %>% mutate(prop=n/sum(n)*100)
+```
+
+5. Utilizando funciones de `dplyr`, reportá una tabla (con `xtable`) que tenga la información de la proporción de Jefes/as según sexo para cada departamento, el valor 1 de la variable parent.jefe corresponde al jefe/a de hogar.
+La tabla debe contener cuatro columnas (Departamento, Sexo, Conteo y Proporción). Guardá el objeto generado con nombre `tabla`.  
+```{r}
+library(xtable)
+tabla<-personas_reco%>% filter(parent.jefe==1) %>% group_by(depto,sexo) %>% summarise(n=n()) %>% mutate(prop=n/sum(n, na.rm=TRUE)*100) %>% rename(Departamento=depto,Sexo=sexo,Conteo=n,prop=prop)
+```
+
+La tabla debe ser igual a la siguiente:
+
+
+
+6. ¿Como podrías mostrar en una visualización la información de la tabla anterior para comparar la proporción de hombres y mujeres por departamento? Recordá poner nombre apropiados a los ejes y subtitulo (caption) que contenga el nombre de la figura y que información se muestra en la misma. Haz un comentario sobre lo que se observa.
+```{r}
+ggplot(tabla,aes(x=fct_reorder2(Departamento, Sexo=='F', prop),y=prop, fill=Sexo)) + geom_bar(stat="identity") + labs(title="Proporcion",subtitle= "del sexo por el dpto",x="Departamento",y="Proporcion")
+```
+
+
+7. Usa la función `pivot_wider` de manera que en el objeto `tabla` generado en el punto anterior queden los departamentos como filas, el sexo como columnas (3 columnas: M, F, NS/NC) y en las celdas los valores de la variable `proporción`. ¿Obtenemos de esa manera un data set ordenado? ¿Por qué?
+```{r}
+tabla1<- tabla %>% select(!Conteo)%>%pivot_wider(names_from = Sexo,values_from = prop)
+```
+
+
+8. Seleccioná las variables `depto`, `sexo` `nivel.educ` y `sit.conyugal`. Usando `mutate_if` para transformar las variables de tipo `integer` a tipo `factor`
+
+```{r}
+personas_reco %>% select(depto,sexo,nivel.educ,sit.conyugal)%>%mutate_if(is.integer, as.factor)
+```
+9. Replique el siguiente gráfico realizado usando solo información de jefe/a de hogar (valor 1 de `parent.jefe`) para la situación conyugal (`sit.conyugal`). Agregue un subtitulo adecuado al gráfico y comente algo interesante del mismo.
+```{r}
+personas %>% filter(parent.jefe==1) %>% mutate(sit.conyugal=recode(sit.conyugal,'1'="Soltero",'2'="Unido",'3'="Casado",'4'="Divorciado",'5'="Viudo",'9'="NS/NC",'0'="NA")) %>% ggplot(aes(x=fct_infreq(sit.conyugal))) + geom_bar(aes(y=(..count..)/sum(..count..)),stat="count") + labs(title="Situacion conyugal de los jefes de hogar", subtitle = "Proporcion de cada situacion", x="Situacion", y="Porcentaje",caption = "Casi la mitad son casados") + scale_y_continuous(labels = scales::percent) + geom_text(aes(y=(..count..)/sum(..count..), label= scales::percent((..count..)/sum(..count..))),stat="count", vjust=-0.5)
+```
+
+10. Replique el siguiente gráfico realizado usando solo información de jefe/a de hogar (valor 1 de parent.jefe) para la situación conyugal (`sit.conyugal`) y sexo. Agregue un subtitulo adecuado al gráfico y comente algo interesante del mismo.
+
+ 

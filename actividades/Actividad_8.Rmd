@@ -1,0 +1,124 @@
+---
+title: "Actividad_8"
+author: "Joaquin Viola"
+date: "8/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+#Ejercicio 1
+
+<div class="alert alert-info">
+  <strong>lo que está de acá para arriba hasta el primer titulo R markdown hay que borrarlo, es lo que pone rmarkdown por defecto.</strong> .
+</div>
+
+```{r, echo=FALSE}
+library(tidyverse)
+```
+##Parte 1
+```{r}
+filtro_1<-filter(mpg, year==2008&hwy>31)
+filtro_1
+```
+*son 6 autos los que cumplen esta condicion*
+##Parte 2
+```{r}
+filtro_2<-filter(mpg, cty==9|hwy>90)
+filtro_2
+```
+*son 5 los autos que cumplen esta condicion*
+##Parte 3
+```{r}
+selec_1<-select(mpg, displ, hwy)
+selec_1
+```
+#Parte 4
+```{r}
+selec_2<-select(mpg, trans:hwy)
+selec_2
+```
+#Parte 5
+```{r}
+datos_1<-mpg %>% filter(manufacturer=="toyota"&model=="camry") %>% select(manufacturer, model, year, cyl, cty)
+datos_1
+```
+#Parte 6
+```{r}
+prom_1 <- mpg %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise_at(c("cty"), mean) %>% arrange(desc(cty))
+prom_1
+```
+*honda es la marca con mejor rendimiento promedio en ciudad y lincoln es la de peor rendimiento promedio en ciudad*
+
+<div class="alert alert-info">
+  <strong>Bien, el arrange no es tan conveniente si tuvieramos muchas marcas. Otra opción mas ajustada sería agregar un filter al final, para filtrar el máximo y el mínimo de la variable cty mean que creaste.</strong> .
+</div>
+#Parte 7
+```{r, echo=FALSE}
+library(plotrix)
+```
+
+```{r}
+prom_2<- mpg%>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(media=mean(cty), error=std.error(cty), rango=max(cty)-min(cty))
+prom_2
+```
+*no puedo hacer el rango*
+
+<div class="alert alert-info">
+  <strong>Acá R tira un error que dice que no pudo encontrar la funcion std.error. Esa funcion al menos dentro de los paquetes que tengo no existe. El rango está bien calculado y si le ponés una función que si exista para calcular el desvio estandar anda lo más bien. Probá con sd que es una función del paquete base.</strong> .
+</div>
+
+# Parte 8
+```{r, echo=FALSE}
+prompri_1<- mpg %>%filter(year<2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(rendimiento_viejo=mean(cty))
+prompri_2 <- mpg %>% filter(year>=2004) %>% select(manufacturer, cty) %>% group_by(manufacturer) %>% summarise(rendimiento_nuevo=mean(cty))
+```
+```{r}
+prom_3<- cbind(prompri_1,prompri_2)
+prom_3
+```
+
+<div class="alert alert-info">
+  <strong>una forma más corta es en vez de filtrar, agrupar por year menor (o mayor) a 2004. Eso hace una evaluación lógica y te crea grupos de verdaderos y falsos. En la solución colgada hay un ejemplo de esto.</strong> .
+</div>
+
+# Parte 9
+```{r}
+aleat_1<- mpg %>% sample_n(3) %>% select(manufacturer, hwy) %>% group_by(manufacturer) %>% summarise(rend_ruta=mean(hwy)) %>% arrange(desc(rend_ruta))
+aleat_1
+```
+
+<div class="alert alert-info">
+  <strong>Acá me parece que tenés un tema de que sample n selecciona filas al azar, y estas seleccionando 3 filas donde manufacturer se puede repetir. En realidad lo que hay que hacer es tomar muestra sobre los niveles de manufacturer, usando la función sample por ej. O primero agrupar por manufacturer, sacar los promedios, y luego si filtrar 3 filas.</strong> .
+</div>
+
+# Parte 10
+```{r}
+nueva_variable<- mpg%>% mutate(l_100 = 3.78541*100/(hwy*1.60934))
+nueva_variable
+```
+
+<div class="alert alert-info">
+  <strong>Muy buen trabajo 8.75/10!. Para futuras entregas te conviene agarrar el .rmd que subimos al eva, con la consigna, e ir respondiendo debajo de cada pregunta. Así te queda el informe mejor armado. Además en este .rmd te quedó al inicio lo que rmarkdown pone por defecto cada vez que creamos uno nuevo, eso podés borrarlo sin problema.</strong> .
+</div>

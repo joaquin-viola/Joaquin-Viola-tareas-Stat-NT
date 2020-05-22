@@ -1,0 +1,165 @@
+---
+title: "Tarea 2"
+author: "Joaquin Viola"
+date: "24/4/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+*usaremos las librerias tidyverse y gapminder, esta ultima es un conjunto de datos de 6 variables, pais, continente, año, espectativa de vida, poblacion y PBI per capita
+```{r, echo=FALSE}
+library(tidyverse)
+library(gapminder)
+```
+<<<<<<< HEAD
+```{r}
+datos<-gapminder
+```
+#Ejercicio 1
+=======
+
+```{r}
+datos<-gapminder
+```
+
+#Ejercicio 1
+
+>>>>>>> 8510be8177ad0e4d04567114645b9a67e941dc31
+```{r}
+ggplot(datos, aes(x=lifeExp, y=year, colour=continent)) + geom_point() + geom_smooth(method = lm, se=FALSE) + labs(x="Expectativa de vida", y="Año", colour="Continente", caption = "Evolucion de la expectativa de vida")
+```
+*El grafico muestra la expectativa de vida en distintos paises diferenciada por colores segun el continente y tienen una regresion lineal por continente*
+
+#Ejercicio 2
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8510be8177ad0e4d04567114645b9a67e941dc31
+## ¿Por que al quitar la capa de geom_point(), desaparecen los puntos pero siguen las lineas?
+```{r, echo= FALSE}
+ggplot(datos, aes(x=lifeExp, y=year, colour=continent)) + geom_smooth(method = lm, se=FALSE) + labs(x="Expectativa de vida", y="Año", colour="Continente", caption = "Evolucion de la expectativa de vida")
+```
+*Porque al quitar la capa geom_point(), no le decimos a R como queremos que nos muestre los datos que seleccionamos, pero geom_smooth() trabaja con los datos seleccionados dentro de ggplot(datos, aes()), por lo que los hace.*
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<div class="alert alert-info">
+  <strong>ok es por la idea de que ggplot2 trabaja con capas y le estamos indicando que los tome al inicio en ggplot.</strong> .
+</div>
+
+>>>>>>> 609dc4eb3597a111c9f10831fd864b4d4c32f585
+#Ejercicio 3
+## ¿De que manera se puede visualizar mejor los datos del grafico que se encuentra sobre cargado?
+*Haciendo distintos graficos uno al lado del otro separandolos por alguna variable, ya sea continente, o año*
+```{r, fig.height=10, fig.width=10}
+ggplot(datos, aes(x=gdpPercap, y=lifeExp, colour=continent)) + geom_point() + facet_wrap(~year) + labs(x = "PBI p/capita", y= "Expectativa de vida", caption = "Expectativa de vida y PBI p/capita a lo largo de los años", colour= "continente")
+```
+
+<div class="alert alert-info">
+  <strong>Si acá en realidad conviene hacer facetas por continente para solucionar el problema de sobreploteo. Hacer facetas por year en realidad no nos soluciona el problema.</strong> .
+</div>
+
+#Ejercicio 4
+## Grafico de puntos de años y PBI/capita, separados por continente y regresion lineal por pais
+```{r, fig.width=200, fig.height=200, eval = FALSE}
+ggplot(datos, aes(x=year, y=gdpPercap, colour=country, size=1000)) + geom_point() + theme(aspect.ratio = 1) + facet_wrap(~continent) + labs(x = "Año", y= "PBI/cabeza", caption = "Avance del PBI/cabeza en los años, separados por continente y refresion lineal de los paises", colour= "Pais") + geom_smooth(method=lm, se= FALSE) + theme(legend.position = "none")
+```
+
+<div class="alert alert-info">
+  <strong>Acá habria que pasarle el argumento group para que agrupe por país.</strong> .
+</div>
+
+#Ejercicio 5
+## Vere la evolucion de la poblacion por continente a lo largo de los años
+```{r}
+ggplot(datos, aes(x=pop)) + geom_bar() + 
+facet_wrap(~year)
+```
+
+<div class="alert alert-info">
+  <strong>Me aparece como que no se está mapeando nada.</strong> .
+</div>
+
+#Ejercicio 6
+## Grafico de barras con la variable dvr de los datos mpg
+```{r, echo=FALSE}
+autos=as.data.frame(mpg)
+```
+*los datos estan guardados en un data frame con el nombre de autos*
+```{r}
+ggplot(autos, aes(x=drv)) + geom_bar(aes(fill=drv))+labs(x="Tipo de traccion", y="Cantidad", colour="Tracciones") + scale_color_brewer(palette="Dark2")
+```
+*dpnde 4 es 4X4, f traccion frontal y r traccion trasera*
+
+#Ejercicio 7
+##
+<<<<<<< HEAD
+=======
+
+<div class="alert alert-info">
+  <strong>Si exacto, es por este tema de que ggplot trabaja con capas. Como le estamos pasando, en este caso, atos y variables de mapeo en la capa inicial ggplot, el resto de las capas recogen ésta información.</strong> .
+</div>
+
+#Ejercicio 3
+## ¿De que manera se puede visualizar mejor los datos del grafico que se encuentra sobre cargado?
+
+*Haciendo distintos graficos uno al lado del otro separandolos por alguna variable, ya sea continente, o año*
+
+
+<div class="alert alert-info">
+  <strong>Si, acá capaz conviene hacer facetas por continente, para poder ver la evolución dentro de cada continente, ya que la comparación se hacemos facetas por años no dice mucha cosa interesante.</strong> .
+</div>
+
+```{r}
+ggplot(datos, aes(x=gdpPercap, y=lifeExp, colour=continent)) + geom_point() + facet_wrap(~year) + labs(x = "PBI p/capita", y= "Expectativa de vida", caption = "Expectativa de vida y PBI p/capita a lo largo de los años")
+```
+
+#Ejercicio 4
+
+## Grafico de puntos de años y PBI/capita, separados por continente y regresion lineal por pais
+
+```{r, fig.width=100, fig.height=100, eval = FALSE}
+ggplot(datos, aes(x=year, y=gdpPercap, colour=country)) + geom_point() + theme(aspect.ratio = 1) + facet_wrap(~continent) + labs(x = "Año", y= "PBI/cabeza", caption = "Avance del PBI/cabeza en los años, separados por continente y refresion lineal de los paises") + geom_smooth(method=lm, se= FALSE)
+```
+
+
+<div class="alert alert-info">
+  <strong>Agregué al chunk eval false para que no evalue porque tarda mucho en correr éste código. Acá lo que hay que hacer es agregar el argumento group en los elementos estéticos para agrupar por país. Después cuando la subamos en la semana miralo en la solución que hay un ejemplo de código.</strong> .
+</div>
+
+
+<div class="alert alert-info">
+  <strong>Faltó hacer parte 5, 6, y 7. El resto de lo que hiciste salvo algún detalle estuvo bien! 5.5/10! </strong> .
+</div>
+>>>>>>> 8510be8177ad0e4d04567114645b9a67e941dc31
+
+#Ejercicio 5
+## Vere la evolucion de la poblacion promedio por continente a lo largo de los anios
+```{r}
+ggplot(datos, aes(x=year, y=pop, colour=continent)) + geom_smooth(se=FALSE)
+```
+*En general se ha mantenido el orden, salvo Africa que cerca del 1980 paso a Oceania en poblacionm y Asia que ha tenido un crecimiento mayor que el resto de los continentes*
+
+#Ejercicio 6
+## con los datos de mpg, hacer una grafica de barra con la variable drv
+*la variable drv es el tipo de traccion, donde f es frontal, r trasera y 4 4X4*
+```{r}
+ggplot(mpg, aes(x=drv)) + geom_bar(aes(fill=drv)) + labs(title = "Cantidad por traccion", x="Tracciones", y="Cantidad")+ scale_color_brewer(palette = "Dark2")
+```
+
+#Ejercicio 7
+## Llevar el grafico anterior a porcentajes
+```{r}
+ggplot(mpg, aes(x=drv)) + geom_bar(aes(fill=drv)) + labs(title = "Porcentaje por traccion", x="Tracciones", y="Porcentaje")+ scale_color_brewer(palette = "Dark2") + scale_y_continuous(labels=scales::percent)
+```
+=======
+
+<div class="alert alert-info">
+  <strong>Continuo y hago comentarios en el rmd Tarea 2 2</strong> .
+</div>
+>>>>>>> 609dc4eb3597a111c9f10831fd864b4d4c32f585
