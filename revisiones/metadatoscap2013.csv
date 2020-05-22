@@ -1,0 +1,437 @@
+Estudio CAP 2013 – Observatorio de la Ciudadanía - AGESIC;;;;
+Diccionario de Variables;;;;
+;;;;
+Nombre de la variable;Descripción;Tipo;Valores y etiquetas de los valores (si corresponde);Pregunta
+Id;Identificador único;Numérico;;
+Zona;Zona del país;Numérico;"1,00    Montevideo
+2,00    Interior";
+P1V15Departamento ;Departamento;Numérico;"               1    Artigas
+               2    Canelones
+               3    Cerro Largo
+               4    Colonia
+               5    Durazno
+               6    Flores
+               7    Florida
+               8    Lavalleja
+               9    Maldonado
+              10    Montevideo
+              11    Paysandú
+              12    Río Negro
+              13    Rivera
+              14    Rocha
+              15    Salto
+              16    San José
+              17    Soriano
+              18    Tacuarembó
+              19    Treinta y Tres";¿En qué departamente vive Ud.? Seleccione sólo una opción
+P4V19Sexo;Sexo;Numérico;"               1    Hombre
+               2    Mujer";Sexo del entrevistado/a. Seleccione sólo una opción
+P5V20Edad ;Edad;Numérico;;¿Me podría decir su edad?
+P7V21Computadorafijaoportátilenhogar ;Computadora fija o portátil en el hogar;Numérico;"               1    Si
+               2    No
+              99    NS";¿Tiene computadora fija o portátil en su hogar? Seleccione sólo una opción
+P8V22Hogarconexiónainternet ;Hogar con conexión a internet;Numérico;"               1    Si
+               2    No
+              99    NS";¿Tiene su hogar conexión a internet? Seleccione sólo una opción
+P9V23Hogarwifioconexióninalámbrica;Hogar con wifi o conexión inalámbrica;Numérico;"               1    Si
+               2    No
+              99    NS";¿Tiene en su hogar wifi o conexión inalámbrica? Seleccione sólo una opción
+P10V24Clavedeaccesocontraseñaenredwifi ;Clave de acceso / contraseña en red wifi;Numérico;"               1    Si
+               2    No
+              99    NS";¿Tiene clave de acceso /contraseña en su red wifi? Seleccione sólo una opción
+P11V25Utilizóvezinternet ;Utilizó alguna vez internet;Numérico;"               1    Si
+               2    No
+              99    NS";¿Utilizó alguna vez Internet? Seleccione sólo una opción
+P12V26Motivosporlosquenoutilizainternet ;Motivos por los que no utiliza internet;Numérico;"               1    No tiene el conocimiento necesario para usarlo
+               2    No tengo acceso
+               3    Lo hace otra persona en el hogar
+               4    No tiene necesidad
+               5    Otra
+              99    Ns/Nc";¿Cuáles son los motivos por los que no utiliza internet? Seleccione sólo una opción 
+P13V28 Frecuencia utilizó internet en los últimos 3 meses;Frecuencia con la que utilizó internet en los últimos 3 meses;Numérico;"               1    Al menos una vez al día
+               2    Al menos una vez a la semana
+               3    Al menos una vez al mes
+               4    Menos que eso
+              99    Ns";¿Con que frecuencia utilizó internet en los últimos 3 meses? Seleccione sólo una opción
+P14V30Lugaresutilizóinternet_M1 ;Lugares en los que utilizó internet;Numérico;"               1    En el hogar
+               2    En el trabajo
+               3    En un centro educativo (lugar de estudio)
+               4    En un lugar público
+               5    En casa de un amigo/vecino
+               6    En un cyber café
+               7    Otro
+              88    Ninguno más
+              99    Ns/Nc";En los ultimos 3 meses, ¿en cuáles de los siguientes lugares utilizó internet? Seleccione sólo una opción
+P14V30Lugaresutilizóinternet_M2 ;Lugares en los que utilizó internet;Numérico;;Opción 2 pregunta P14V30Lugaresutilizóinternet_M1
+P14V30Lugaresutilizóinternet_M3 ;Lugares en los que utilizó internet;Numérico;;Opción 3 pregunta P14V30Lugaresutilizóinternet_M1
+P14V30Lugaresutilizóinternet_M4 ;Lugares en los que utilizó internet;Numérico;;Opción 4 pregunta P14V30Lugaresutilizóinternet_M1
+P14V30Lugaresutilizóinternet_M5 ;Lugares en los que utilizó internet;Numérico;;Opción 5 pregunta P14V30Lugaresutilizóinternet_M1
+P14V30Lugaresutilizóinternet_M6 ;Lugares en los que utilizó internet;Numérico;;Opción 6 pregunta P14V30Lugaresutilizóinternet_M1
+P14V31gtOtroparaV30Lugaresutilizóinternet ;Otro para lugares utilizó internet;Numérico;;Opción 7 pregunta P14V30Lugaresutilizóinternet_M1
+P15V33AccesoInternetCelular;Acceso a internet en el celular;Numérico;"               1    Si
+               2    No
+              99M    NS";Tiene acceso a Internet en el celular Seleccione sólo una opción
+P16V32Frecuenciaaccedeainternetdesdedecelular ;Frecuencia en que accede a internet desde el celular;Numérico;"               1    diariamente
+               2    ocasionalmente
+               3    Nunca
+              99    NS";¿Con qué frecuencia accede a internet desde de su celular? Seleccione sólo una opción
+P18V34;Ver y enviar correo;Numérico;"               1    Al menos una vez al día
+               2    Al menos una vez a la semana
+               3    Al menos una vez al mes
+               4    Al menos una vez en estos 3 meses
+               5    Al menos una vez al año
+               6    Nunca
+              99    NS";En los últimos 12 meses, con qué frecuencia utilizó internet para ver y enviar correo. Seleccione sólo una opción
+P19V35Buscarinformaciónnoticias ;Buscar información/noticias;Numérico;"               1    Al menos una vez al día
+               2    Al menos una vez a la semana
+               3    Al menos una vez al mes
+               4    Al menos una vez en estos 3 meses
+               5    Al menos una vez al año
+               6    Nunca
+              99    NS";En los últimos 12 meses, con qué frecuencia utilizó internet para buscar información/noticias. Seleccione sólo una opción
+P20V36Educaciónyaprendizaje ;Educación y aprendizaje;Numérico;"               1    Al menos una vez al día
+               2    Al menos una vez a la semana
+               3    Al menos una vez al mes
+               4    Al menos una vez en estos 3 meses
+               5    Al menos una vez al año
+               6    Nunca
+              99    NS";En los últimos 12 meses, con qué frecuencia utilizó internet para educación y aprendizaje. Seleccione sólo una opción
+P21V37;Redes sociales;Numérico;"               1    Al menos una vez al día
+               2    Al menos una vez a la semana
+               3    Al menos una vez al mes
+               4    Al menos una vez en estos 3 meses
+               5    Al menos una vez al año
+               6    Nunca
+              99    NS";En los últimos 12 meses, con qué frecuencia utilizó internet para Redes Sociales. Seleccione sólo una opción
+P22V38Trabajar ;Trabajar;Numérico;"               1    Al menos una vez al día
+               2    Al menos una vez a la semana
+               3    Al menos una vez al mes
+               4    Al menos una vez en estos 3 meses
+               5    Al menos una vez al año
+               6    Nunca
+              99    NS";En los últimos 12 meses, con qué frecuencia utilizó internet para Trabajar. Seleccione sólo una opción
+P23V39Comprarvenderproductososervicios ;Comprar/vender productos o servicios;Numérico;"               1    Al menos una vez al día
+               2    Al menos una vez a la semana
+               3    Al menos una vez al mes
+               4    Al menos una vez en estos 3 meses
+               5    Al menos una vez al año
+               6    Nunca
+              99    NS";En los últimos 12 meses, con qué frecuencia utilizó internet para Comprar/vender productos o servicios. Seleccione sólo una opción 
+P24V40 ;Hacer trámites;Numérico;"               1    Al menos una vez al día
+               2    Al menos una vez a la semana
+               3    Al menos una vez al mes
+               4    Al menos una vez en estos 3 meses
+               5    Al menos una vez al año
+               6    Nunca
+              99    NS
+             999    No usa internet";En los últimos 12 meses, con qué frecuencia utilizó internet para Hacer trámites. Seleccione sólo una opción
+P26V42Antivirusenpclaptop ;Antivirus en PC/laptop;Numérico;"               1    Si
+               2    No
+              99    NS";¿Tiene antivirus en su pc/laptop?. Seleccione sólo una opción
+P27V431Comoconsiguioelantivirus ;Como consiguió el antivirus;Numérico;"               1    lo descargó por internet y no pagó por el mismo
+               2    venía instalado en el computador y no pagó por él
+               3    Lo compró
+              99    NS";"Con respecto a su antivirus usted¿1- lo descargó por internet en forma gratuita; 2- venía instalado en el computador; 3- Lo compró? Seleccione sólo una opción"
+P28V44Antivirusencelular ;Antivirus en el celular;Numérico;"               1    lo descargó por internet y no pagó por el mismo
+               2    venía instalado en el computador y no pagó por él
+               3    Lo compró
+              99    NS";¿Tiene antivirus en su Celular? Seleccione sólo una opción
+P29V45Tipodeinformaciónguardaencelular_M1 ;Tipo de información que guarda en el celular;Numérico;"               1    Mensajes de texto
+               2    Fotos
+               3    emails / correos personales
+               4    Información vinculada al trabajo
+               5    contactos personales
+              88    Ninguna mas
+              99    Ns/Nc";¿Que tipo de información guarda usted actualmente en su celular?
+P29V45Tipodeinformaciónguardaencelular_M2 ;;;;Opción 2 pregunta P29V45Tipodeinformaciónguardaencelular_M1
+P29V45Tipodeinformaciónguardaencelular_M3 ;;;;Opción 3 pregunta P29V45Tipodeinformaciónguardaencelular_M1
+P29V45Tipodeinformaciónguardaencelular_M4 ;;;;Opción 4 pregunta P29V45Tipodeinformaciónguardaencelular_M1
+P29V45Tipodeinformaciónguardaencelular_M5 ;;;;Opción 5 pregunta P29V45Tipodeinformaciónguardaencelular_M1
+P30V46 ;Alguna vez ha realizado pagos con tarjeta de crédito o transferencias bancarias por internet;;"               1    Si
+               2    No
+              99    NS"; ¿Alguna vez ha realizado pagos con tarjeta de crédito o transferencias bancarias POR INTERNET? Seleccione sólo una opción
+P31V47 ;Confía en internet como medio para hacer pagos con tarjeta de crédito o transferencias bancarias;;"               1    nada
+               2    poco
+               3    bastante
+               4    mucho
+              99    NS";Sin importar si lo ha hecho antes o no o si en la actualidad tiene o no tiene tarjeta...¿Cuánto diría usted que confía en Internet como medio para hacer pagos con tarjeta de crédito o transferencias bancarias? Seleccione sólo una opción
+P34V48Satisfechooinsatisfechodiríaqueseencuentrarespectoalosserv ;Satisfecho o insatisfecho diría que se encuentra respecto a los servicios que se brindan en las distintas oficinas públicas del Uruguay;;"               1    1 Muy insatisfecho
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10 Muy satisfecho
+              99 M  NS";###############################################################################################################################################################################################################################################################
+P35V49Pensandoenhacertrámitesygestionesenunaoficinapública...pre ;Pensando en hacer trámites y gestiones en una oficina pública... prefiere…;;"               1    Informarse previamente por teléfono
+               2    Informarse previamente por Internet
+               3    Informarse con familiares o conocidos
+               4    Ir directamente a la oficina publica";Pensando en hacer trámites y gestiones en una oficina pública... usted prefiere… Seleccione sólo una opción
+P36V50Confíaeninternetcomomedioparahacertrámitesanteoficinaspúbl ;Confía en internet como medio para hacer trámites ante oficinas públicas;;"               1    Nada
+               2    Poco
+               3    Bastante
+               4    Mucho
+              99    NS";Independientemente de eso... ¿cuánto diría usted que confía en Internet como medio para hacer trámites ante oficinas públicas? Seleccione sólo una opción
+P37V51Intendenciaoempresapúblicaparabuscarinformación ; Intendencia o empresa pública para buscar información;;"               1    Si
+               2    No
+              99    NS";¿En el último año ha visitado la página web de algún organismo público, ministerio, intendencia o empresa pública para buscar información? Seleccione sólo una opción
+P38V52Encontrólainformaciónquebuscaba ; Encontró la información que buscaba;;"               1    Encontré la información y estaba correcta
+               2    Encontré la información pero era incorrecta o incompleta
+               3    No encontré la informacion
+              99    NS";La última vez que busco información... ¿Encontró la información que buscaba? Seleccione sólo una opción
+P39V53Conoceelsitiowebportaldelestadouruguayo ;Conoce el sitio web portal del estado uruguayo;;"               1    Si
+               2    No
+              99    NS";¿Conoce el sitio web Portal del Estado Uruguayo? Seleccione sólo una opción
+P40V54Conoceelsitiowebtramites.gub.uy ;Conoce el sitio web tramites.gub.uy;;"               1    Si
+               2    No
+              99    NS";¿Conoce el sitio web tramites.gub.uy? Seleccione sólo una opción
+P41V55Quejasosugerencias ;Quejas o sugerencias;;"               1    Si
+               2    No
+              99    NS";En el último año. ¿Ha enviado algún correo electrónico a oficinas, organismos o empresas del Estado para realizar consultas, quejas o sugerencias? Seleccione sólo una opción
+P42V56Tipoderespuestarecibióenlaúltimaoportunidadenqueenvióuncor ;Tipo de respuesta recibió en la última oportunidad en que envió un correo electrónico;;"               1    Lo llamaron
+               2    le respondieron por mail
+               3    Otros
+               4    No tuve respuesta";¿Qué tipo de respuesta recibió en la última oportunidad en que envió un correo electrónico? Seleccione sólo una opción
+P43V58Leresolvieronlaconsultaoproblemaenesaoportunidad ;Le resolvieron la consulta o problema en esa oportunidad;;"               1    Si
+               2    No
+              99    NS";¿Le resolvieron la consulta o problema en esa oportunidad? Seleccione sólo una opción
+P44V59Etc.encasodequeunciudadanocomúnquierasaberlo ; Etc. en caso de que un ciudadano común quiera saberlo;;"               1    Si
+               2    No";¿Sabe si existe alguna ley o decreto que obligue al Estado a brindar información publica de sus gastos, remuneraciones, contratos, etc. en caso de que un ciudadano común quiera saberlo? Seleccione sólo una opción
+P46V61Serviciosporinternetqueofreceelestadodemuybuenacalidad ;Servicios por internet que ofrece el estado de muy buena calidad;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";¿Quá tan de acuerdo está con la siguiente frase? Los servicios por internet que ofrece el Estado son de muy buena calidad. Seleccione sólo una opción
+P47V62Serviciosporinternetqueofreceelestadofuncionanentodomoment ;Servicios por internet que ofrece el estado funcionan en todo momento;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";¿Quá tan de acuerdo está con la siguiente frase? Los servicios por internet que ofrece el Estado funcionan correctamente en todo momento. Seleccione sólo una opción
+P48V63Serviciosporinternetqueofreceelestadomuyfácilesdeusar ;Servicios por internet que ofrece el estado muy fáciles de usar;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";¿Quá tan de acuerdo está con la siguiente frase? Los servicios por internet que ofrece el Estado son muy fáciles de usar. Seleccione sólo una opción
+P49V64Serviciosporinternetqueofreceelestadomepermitenahorrartiem ;Servicios por internet que ofrece el estado me permiten ahorrar tiempo;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";¿Quá tan de acuerdo está con la siguiente frase? Los servicios por internet que ofrece el Estado me permiten ahorrar tiempo. Seleccione sólo una opción
+P50V65Informaciónquebrindaelestadoporinternetcorrectayprecisa ;Información que brinda el estado por internet correcta y precisa;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";¿Quá tan de acuerdo está con la siguiente frase? La información que brinda el estado por internet es correcta y precisa. Seleccione sólo una opción
+p46 ;Servicios por internet que ofrece el estado de muy buena calidad;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";¿Quá tan de acuerdo está con la siguiente frase? 
+p47;Servicios por internet que ofrece el estado funcionan en todo momento;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";
+p48 ;Servicios por internet que ofrece el estado muy fáciles de usar;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";
+p49;Servicios por internet que ofrece el estado me permiten ahorrar tiempo;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";
+p50 ;Información que brinda el estado por internet correcta y precisa;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";
+P53V66Cuántaconfianzasetieneacercadecapacidadparausaruncajeroaut ;Cuánta confianza se tiene acerca de capacidad para usar un cajero automático;;"               1    Nada de Confianza
+               2    Poca Confianza
+               3    Bastante Confianza
+               4    Mucha Confianza
+              99    Ns";¿Cuánta confianza se tiene usted acerca de su capacidad para usar un cajero automático? Seleccione sólo una opción
+P54V67Cuántaconfianzasetieneacercadecapacidadparahacertransaccio ;Cuánta confianza se tiene acerca de capacidad para hacer transacciones bancarias o pagos por internet;;"               1    Nada de Confianza
+               2    Poca Confianza
+               3    Bastante Confianza
+               4    Mucha Confianza
+              99    Ns";¿Cuánta confianza se tiene usted acerca de su capacidad para hacer transacciones bancarias o pagos POR INTERNET? Seleccione sólo una opción
+P55V68 ;Cuánta confianza se tiene acerca de capacidad para hacer trámites con oficinas del estado por internet;;"               1    Nada de Confianza
+               2    Poca Confianza
+               3    Bastante Confianza
+               4    Mucha Confianza
+              99    Ns";¿Cuánta confianza se tiene usted acerca de su capacidad para hacer trámites con oficinas del estado por internet? Seleccione sólo una opción
+P57V69Firmarparallamadoaconsultapopular ;Firmar para llamado a consulta popular;;"               1    lo ha hecho
+               2    si lo podría hacer
+               3    nunca lo haría
+              99    NS";Ahora le voy a nombrar algunas formas de acción política y le consultaré para cada una si usted lo ha hecho, si lo podría hacer o si nunca lo haría. Firmar para llamado a consulta popular. Seleccione sólo una opción
+P58V70Asistiramanifestaciones ;Asistir a manifestaciones;;"               1    lo ha hecho
+               2    si lo podría hacer
+               3    nunca lo haría
+              99    NS";Asistir a Manifestaciones. Seleccione sólo una opción
+P59V71Unirseahuelgas ;Unirse a huelgas;;"               1    lo ha hecho
+               2    si lo podría hacer
+               3    nunca lo haría
+              99    NS";Unirse a Huelgas. Seleccione sólo una opción
+P60V72Últimosdocemeses ;Últimos doce meses;;"               1    Si
+               2    No
+              99    NS";En los últimos doce meses, usted leyó o compartió información política por alguna red social de la web como Twitter, Facebook, etc? Seleccione sólo una opción
+P62V73Debidoalacienciaylatecnologíahabrámásoportunidadesparalapr ;Debido a la ciencia y la tecnología habrá más oportunidades para la próxima generación;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";Debido a la ciencia y la tecnología habrá más oportunidades para la próxima generación. Seleccione sólo una opción
+P63V74Dependemosdemasiadodelatecnologíayesonobueno ;Dependemos demasiado de la tecnología y eso no bueno;;"               1    1
+               2    2
+               3    3
+               4    4
+               5    5
+               6    6
+               7    7
+               8    8
+               9    9
+              10    10
+              99    NS";Dependemos demasiado de la tecnología y eso no es bueno. Seleccione sólo una opción
+P65V76Correoelectrónico ;Correo electrónico;;"               1    1
+               2    2
+              99    NS"; ¿Ha cambiado su contraseña para acceder a cualquiera de los siguientes servicios en línea durante los últimos 12 meses? Correo electrónico. Seleccione sólo una opción
+P66V77Redessociales ;Redes sociales;;"               1    1
+               2    2
+              99    NS";Redes sociales. Seleccione sólo una opción
+P67V78Bancaelectrónica ;Banca electrónica;;"               1    1
+               2    2
+              99    NS";Banca electrónica. Seleccione sólo una opción
+P69V79Evitodivulgarinformaciónpersonaleninternet ;Evito divulgar información personal en internet;;"               1    Totalmente de acuerdo
+               2    Bastante de acuerdo
+               3    Bastante en desacuerdo
+               4    Totalmente en desacuerdo
+              99    NS"; Podría usted por favor decirnos en qué medida está de acuerdo o en desacuerdo con cada una de las siguientes afirmaciones? Evito divulgar información personal en Internet. Seleccione sólo una opción
+P70V80Creoquelosmenoresde18añospuedenusarinternetsóloconestricto ;Creo que los menores de 18 años pueden usar internet sólo con estricto control de padres;;"               1    Totalmente de acuerdo
+               2    Bastante de acuerdo
+               3    Bastante en desacuerdo
+               4    Totalmente en desacuerdo
+              99    NS";Creo que los menores de 18 años pueden usar internet sólo con estricto control de sus padres. Seleccione sólo una opción
+P71V81Sitioswebnomantienenmiinformaciónpersonalsegura ;Sitios web no mantienen mi información personal segura;;"               1    Totalmente de acuerdo
+               2    Bastante de acuerdo
+               3    Bastante en desacuerdo
+               4    Totalmente en desacuerdo
+              99    NS";los sitios web NO mantienen mi información personal segura. Seleccione sólo una opción
+P73V82SuNombre ;Su Nombre;;"               1    Personal
+               2    No Personal
+              99    NS";¿Cuál de los siguientes tipos de información y datos usted considera como personales y/o privados? Su nombre. Seleccione sólo una opción
+P74V83SuDirección ;Su Dirección;;"               1    Personal
+               2    No Personal
+              99    NS";Su dirección. Seleccione sólo una opción
+P75V84Quienesamigos ;Quienes amigos;;"               1    Personal
+               2    No Personal
+              99    NS";Quienes son sus amigos. Seleccione sólo una opción
+P76V85Gustosyopiniones ;Gustos y opiniones;;"               1    Personal
+               2    No Personal
+              99    NS";Sus gustos y opiniones. Seleccione sólo una opción
+P77V86Fotos ;Fotos;;"               1    Personal
+               2    No Personal
+              99    NS";Sus fotos. Seleccione sólo una opción
+P78V87Sabesiexisteleyodecretoqueimpidaqueotraspersonasoempresasu ;Sabe si existe ley o decreto que impida que otras personas o empresas usen tus datos personales sin consentimiento;;"               1    Si
+               2    No
+              99    NC";¿Sabe si existe alguna ley o decreto que impida que otras personas o empresas usen tus datos personales sin consentimiento? Seleccione sólo una opción
+P79V88Havistouoídoalgosobredelitosquesecometeneninternet ;Ha visto u oído algo sobre delitos que se cometen en internet;;"               1    Si, he oído
+               2    No oyó nada
+              99    Ns";Los delitos cibernéticos se pueden definir como los delitos que se cometen a través de Internet . En los últimos 12 meses, ¿ha visto u oído algo sobre delitos que se cometen en Internet? Seleccione sólo una opción
+P81V90Robodeidentidad ;Robo de identidad...;;"               1    Si
+               2    No
+              99    NS";Entre los delitos por Internet se pueden incluir diferentes tipos de actividad criminal. ¿ha sido víctima de las siguientes situaciones? El robo de identidad... (Alguien roba sus datos personales y se hace pasar por usted) Seleccione sólo una opción
+P82V91Mensajesdecorreoelectrónicodeextrañospidiendodineroodatosp ;Mensajes de correo electrónico de extraños pidiendo dinero o datos personales;;"               1    Si
+               2    No
+              99    NS";Mensajes de correo electrónico de extraños pidiendo dinero o datos personales (incluida la información bancaria o pago ) Seleccione sólo una opción
+P83V92Fraudeenlíneadondelosbienesadquiridosnofueronentregadosseg ;Fraude en línea donde los bienes adquiridos no fueron entregados según lo anunciado;;"               1    Si
+               2    No
+              99    NS"; El fraude en línea donde los bienes adquiridos no fueron entregados según lo anunciado. Seleccione sólo una opción
+P84V93Nosercapazdeaccederaserviciosenlíneaacausadeataquesciberné ;No ser capaz de acceder a servicios en línea a causa de ataques cibernéticos;;"               1    Si
+               2    No
+              99    NS";No ser capaz de acceder a servicios en línea ( por ejemplo, servicios bancarios ) a causa de los ataques cibernéticos. Seleccione sólo una opción
+P86V94Últimoañodeestudiosquecursó ;Último año de estudios que cursó;;"               1    Primaria incompleta Sin Instrucción
+               2    Primaria completa
+               3    Ciclo Básico Liceo o UTU incompleta
+               4    Ciclo Básico Liceo o UTU Completo
+               5    Bachillerato Incompleto secundario o UTU
+               6    Bachillerato Completo secundario o UTU
+               7    Terciaria incompleta Incluye Magisterio, Terciario no Univer
+               8    Terciaria completa Incluye Magisterio, Terciario no Universi
+              99    NS";¿Cuál fue el último año de estudios que usted cursó? Seleccione sólo una opción
+PonderaEDUC ;PONDERADOR POR NIVEL EDUCATIVO;;;Ponderador que ajusta por nivel educativo
+P87V95Hijosmenoresde18añosenhogar ;Hijos menores de 18 años en hogar;;"               1    Si
+               2    No
+              99    NS";Tiene hijos menores de 18 años en su hogar? Seleccione sólo una opción
+P88V96Tarjetadecrédito ;Tarjeta de crédito;;"               1    Si
+               2    No
+              99    NS";Tiene tarjeta de crédito? Seleccione sólo una opción
