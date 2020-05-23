@@ -101,3 +101,45 @@ Debe contener al menos 5 preguntas orientadoras y visualizaciones apropiadas par
 La exploración deberá contener las preguntas a responder sus respuestas con el correspondiente resumen de información o visualización. 
 Incluya en su exploración el análisis de la variabilidad tanto de  variables cuantitativas como cualitativas y covariaciones entre las mismas. 
 Recuerde que en las visualizaciones, las etiquetas de los ejes deben ser claras y describir las variables involucradas. Incluir un `caption` en la figura con algún comentario de interés que describa el gráfico.
+```{r}
+library(here)
+here("tareas")
+library(readxl)
+gastos<-read_excel("datos_gastos-por-actos-medicos-fondo-nacional-de-recursos-2017.xlsx")
+```
+## Proporcion del sexo de los pacientes
+```{r}
+gastos%>%group_by(Sexo)%>% summarise(n=n()) %>% mutate(prop=n/sum(n)*100)
+```
+```{r}
+gastos%>%group_by(Sexo)%>%summarise(n=n()) %>% mutate(prop=n/sum(n))%>%ggplot(aes(x=Sexo,y=prop,fill=Sexo))+geom_bar(stat="identity")
+```
+*El 55.2% de los pacientes son hombres, mientrasque el 44,8% de los pacientes son mujeres*
+## Las edades de los pacientes según el sexo
+```{r}
+ggplot(gastos,aes(x=Edad_anios, fill=Sexo)) + geom_density(alpha=1/3) + labs(title="Densidad de las edades",subtitle = "Separadas por sexo", x="Edad",y="Densidad") + scale_x_continuous(breaks = c(0,10,20,30,40,50,60,70,80,90,100,110))
+```
+
+*Ambos Sexos tienen una campana parecida y corridad hacia la derecha, la mayor densidad de los hombres se da a los 71 anios, mientras que la mayot densidad de las mujeres se da a los 76 anios*
+## Ver cuantos trasplantes se hizo por medio del FNR en el 2017, y de que es el trasplante
+```{r}
+gastos%>%filter(Area_prestacion=="Trasplantes")%>%group_by(Prestacion)%>% summarise(n=n())%>%mutate(prop=n/sum(n)*100)
+```
+```{r}
+gastos%>%filter(Area_prestacion=="Trasplantes")%>%group_by(Prestacion)%>% summarise(n=n())%>%mutate(prop=n/sum(n))%>%ggplot(aes(x=Prestacion,y=n,fill=Prestacion,label=n)) + geom_bar(stat="identity") + geom_text() + scale_fill_brewer(palette="Dark2") + ylab("Conteo")
+```
+*Hubo en total 1775 trasplantes a travez del FNR en el 2017, de los cuales casi el 80% fueron trasplantes hepaticos*
+## Veremos el promedio del costo por el area de prestacion
+```{r}
+gastos%>%select(Area_prestacion,Importe)%>%group_by(Area_prestacion)%>%summarise(costo=sum(Importe),n=n(),prom=costo/n)
+```
+```{r}
+gastos%>%select(Area_prestacion,Importe)%>%group_by(Area_prestacion)%>%summarise(costo=sum(Importe),n=n(),prom=costo/n)%>%ggplot(aes(x=Area_prestacion,y=prom)) + geom_point() + labs(title="Promedio por area de prestacion",x="Area de prestacion",y="Promedio") + theme(axis.text.x = element_text(angle=90))
+```
+*Vemos una importante diferencia en los promedios de los costos por area de prestacion, hay areas que son mas caras*
+
+## Vamos a averiguar cual es la distribucion de las intervenciones por el departamento de residencia los pacientes
+```{r}
+depto<-gastos%>%group_by(Departamento_residencia)%>%summarise(cant=n(),importe=sum(Importe),prom=importe/cant)
+```
+*Los promedios por departamento son bastantes cercanos entre si*
