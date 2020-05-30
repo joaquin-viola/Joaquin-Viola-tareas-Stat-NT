@@ -26,7 +26,7 @@ La prueba dura 2 horas con posibilidad de extensión de media hora más, a las 1
 
 Recordar que para que tengas la última versión de tu repositorio debes hacer `pull` a tu repositorio para no generar inconsistencias y antes de terminar subir tus cambios con `commit` y `push`. Hay puntos parciales por lo que si algunas de las respuestas de código te queda incompleta agregá en el entorno de código `eval=FALSE` para que no se evalue el mismo y evitar posibles errores.
 
-# Ejercicio 1 (80 puntos)
+# Ejercicio 1 (68/80 puntos)
 
 ## Explicativo sobre los datos para el Ejercicio 1
 
@@ -52,29 +52,41 @@ datadigital<-read_delim(file = "basededatosobsciucap2013.csv", delim = ";",
 
 ```
 
+\fbox{\begin{minipage}{48em}
+(1 Punto)\end{minipage}}
 
 ## (2 puntos) *Pregunta 2*
 
 Vamos a trabajar con un subconjunto de los datos. Generá un nuevo objeto llamado `digital_red` que contenga las variables desde `P1V15Departamento` hasta `P24V40` (en el archivo `metadatoscap2013.csv` podés encontrar el nombre de todas las variables junto con su descripción). El conjunto de datos reducidos (`digital_red`) debe tener 1006 filas y 30 columnas.
+
 ```{r}
 digital_red<-datadigital %>% select(P1V15Departamento:P24V40)
 ```
+
+\fbox{\begin{minipage}{48em}
+(2 Puntos)\end{minipage}}
 
 De ahora en más trabajaremos con el conjunto de datos reducidos `digital_red`
 
 ## (7 puntos) *Pregunta 3 *
 
-Usando funciones del paquete `ggplot2`, hacé un gráfico de barras que contenga la cantidad de personas que utilizó alguna vez internet (`P11V25Utilizóvezinternet`). Cambiá los ticks del eje `x`  donde dice 1 debe decir `Si` y donde dice `2` debe decir `No` y en el resto de los ticks nada. Para esta parte debes notar que la variable `P11V25Utilizóvezinternet` es continua. Cambiá la etiqueta del eje `y` a `Cantidad` y la del eje `x` a `Usó internet`. 
+Usando funciones del paquete `ggplot2`, hacé un gráfico de barras que contenga la cantidad de personas que utilizó alguna vez internet (`P11V25Utilizóvezinternet`). Cambiá los ticks del eje `x`  donde dice 1 debe decir `Si` y donde dice `2` debe decir `No` y en el resto de los ticks nada. Para esta parte debes notar que la variable `P11V25Utilizóvezinternet` es continua. Cambiá la etiqueta del eje `y` a `Cantidad` y la del eje `x` a `Usó internet`.
 
 El gráfico debe quedarte como sigue y en vez de "Gráfico a replicar" (`caption`) debes agregar un título que describa la figura y un comentario sobre la misma.
 ```{r}
 digital_red%>%mutate(P11V25Utilizóvezinternet, recode(P11V25Utilizóvezinternet,'1'="SI",'2'="NO"))%>%ggplot(aes(x=P11V25Utilizóvezinternet)) + geom_bar() + scale_x_continuous(breaks=c(1,2),labels = c("SI","NO")) + labs(title = "Usaron internet", x="Usó internet", y="Cantidad",caption = "Hay casi 4 veces mas personas que usaron internet alguna vez de las que no")
 ```
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=15cm, height =10cm]{pl1.png}
-\caption{Gráfico a replicar}
-\end{figure}
+
+\fbox{\begin{minipage}{48em}
+(6 Puntos) Aunque la idea no era recodificar la variable en este caso sino usar $scale\_x\_continuous$ la respuesta es correcta. El título del gráfico está incompleto y debe estar abajo de la figura y numerado para ello tenés que poner en el entorno de código fig.cap, ago como fig.cap="Gráfico de barras de cantidad de personas que usaron alguna vez internet. La mayoría de personas en la encuesta utilizaron alguna vez internet, aprox 800, mientras que solo 200 no lo hicieron."
+\end{minipage}}
+
+
+<!-- \begin{figure}[htbp] -->
+<!-- \centering -->
+<!-- \includegraphics[width=15cm, height =10cm]{pl1.png} -->
+<!-- \caption{Gráfico a replicar} -->
+<!-- \end{figure} -->
 
 \newpage
 
@@ -100,6 +112,8 @@ digital_red<-digital_red %>% mutate(usoint=recode(usoint, '1'="SI",'2'="NO",'99'
 ggplot(digital_red,aes(x=fct_infreq(usoint))) + geom_bar() + labs(title = "Usaron internet", x="Usó internet", y="Cantidad",caption = "Hay casi 4 veces mas personas que usaron internet alguna vez de las que no")
 ```
 
+\fbox{\begin{minipage}{48em}
+(7 Puntos)\end{minipage}}
 
 ## (7 puntos) *Pregunta 5*
 
@@ -109,6 +123,8 @@ digital_red %>% group_by(usoint) %>% summarise(n=n()) %>% mutate(prop=n/sum(n)*1
 ```
 *El 77,6% usó alguna vez internet, mientras que el 22,4% no*
 
+\fbox{\begin{minipage}{48em}
+(7 Puntos)\end{minipage}}
 
 ## (10 puntos) *Pregunta 6*
 
@@ -117,12 +133,18 @@ Usando funciones de `dplyr` respondé. ¿Qué proporción de personas que utiliz
 digital_red%>%filter(usoint=="SI")%>% group_by(P1V15Departamento)%>%summarise(n=n())%>%mutate(prop=n/sum(n,na.rm = TRUE))%>%filter(P1V15Departamento==10)
 ```
 *Suponiendo que los departamentos estan ordenados alfabeticamente, por lo que Montevideo corresponde al numero 10, el 46,9% de los que usaron internet son de Montevideo*
+
+\fbox{\begin{minipage}{48em}
+(10 Puntos) Por suerte estaban ordenados los deptos, esperemos que para el resto de la vida mires los metadatos para ver a que corresponden las codificaciones\end{minipage}}
+
 ## (10 puntos) *Pregunta 7*
 
 Utilizando alguno de los "scoped variants" de los verbos de `dplyr` (con alguno de estos sufijos `_all`, `_at`o `_if`) y cambiále en el nombre de todas las variables que contienen `P14V30Lugaresutilizóinternet_` por `lugar_int`, por ejemplo la variable que se llama `P14V30Lugaresutilizóinternet_M4` se debe llamar `lugar_int_M4` y de forma similar el resto.
 ```{r,eval=FALSE}
-digital_red%>%rename_if(starts_with("P14V30Lugaresutilizóinernet"),gsub("P14V30Lugaresutilizóinernet","lugar_int"))
+digital_red%>%rename_if(starts_with("P14V30Lugaresutilizóinernet"),gsub("P14V30Lugaresutilizóinernet","lugar_int")) 
 ```
+\fbox{\begin{minipage}{48em}
+(6 Puntos) Ver solución\end{minipage}}
 
 ## (12 puntos) *Pregunta 8*
 
@@ -131,10 +153,14 @@ Usando `ggplot2` realiza una visualización apropiada a tu elección para ver la
 digital_red%>% mutate(Sexo=recode(Sexo, '1'="M",'2'="F"))%>%ggplot(aes(x=P5V20Edad,linetype=usoint)) + geom_density(size=1.5) + facet_wrap(~Sexo) + labs(title="Uso de internet,Sexo y Edad",x="Edad",y="Densidad",caption="En cada sexo se cumple que los jovenes son los que mas usaron internet")
 ```
 
-A su vez usando funciones de `dplyr` respondé ¿Cuál es el promedio de edad de las personas que nunca usaron internet para cada sexo? 
+A su vez usando funciones de `dplyr` respondé ¿Cuál es el promedio de edad de las personas que nunca usaron internet para cada sexo?
 ```{r}
 digital_red%>%filter(usoint=="NO")%>%group_by(Sexo)%>%summarise(prom=mean(P5V20Edad))
 ```
+
+\fbox{\begin{minipage}{48em}
+(12 Puntos) Acordate de usar fig.cap y poner el título del mismo, en este caso sería Gráfico de densidades de edad según sexo y uso de internet, te faltó un comentario sobre la variable sexo. Fue el gráfico más creativo para esta pregunta aunque tal vez hubiese quedado mejor usando color y transparencias para usoint en vez de linetype  \end{minipage}}
+
 ## (14 puntos) *Pregunta 9*
 
 Usando `ggplot2` replicá el siguiente gráfico para visualizar la distribución de la variable `P8V22Hogarconexiónainternet` por departamento. Incluí un título apropiado para el gráfico y un breve comentario de lo que se puede observar en el mismo. La codificación de la variable `P1V15Departamento` está en los metadatos por simplicidad miralos en la siguiente tabla:
@@ -151,11 +177,15 @@ tbl %>% xtable() %>% print(include.rownames = FALSE)
 digital_red%>%group_by(P1V15Departamento,P8V22Hogarconexiónainternet)%>%summarise(n=n())%>%mutate(prop=n/sum(n)) %>%ggplot(aes(x=P8V22Hogarconexiónainternet,y=prop)) + geom_bar(stat="Identity")+facet_wrap(~P1V15Departamento) + scale_x_continuous(breaks=c(1,2),labels = c("SI","NO")) + labs(title = "Departamento y coneccion", x="Internet en el hogar",y="Proporcion",caption="El departamento con mayor proporcion de internet en el hogar es Montevideo")
 ```
 
-\begin{figure}[!h]
-\centering
-\includegraphics[width=15cm, height =10cm]{pl2.png}
-\caption{Gráfico a replicar}
-\end{figure}
+\fbox{\begin{minipage}{48em}
+(11 Puntos) Falta poner un mejor título como gráfico de barras de la proporción de hogares con internet según departamento, ponelo en el fig.cap. Faltó etiquetar los departamentos que me lo comentaste en clase \end{minipage}}
+
+
+<!-- \begin{figure}[!h] -->
+<!-- \centering -->
+<!-- \includegraphics[width=15cm, height =10cm]{pl2.png} -->
+<!-- \caption{Gráfico a replicar} -->
+<!-- \end{figure} -->
 
 \newpage
 
@@ -165,72 +195,106 @@ Queremos saber con que frecuencia las personas usan internet para trabajar. Para
 
 - Se utilizó la variable `P22V38Trabajar` y dado que la misma contiene muchos valores `#¡NULO!` y `99`, se filtraron  los valores diferentes a éstos.
 - Posteriormente se realizó un gráfico de barras de `P22V38Trabajar` (filtrada) como el que aparece a continuación.
+
 ```{r}
 digital_red%>%filter(P22V38Trabajar==1|P22V38Trabajar==2)%>%filter(usoint=="SI")%>%group_by(P22V38Trabajar) %>% summarise(n=n())%>%mutate(prop=n/sum(n)*100)
 ```
 *El 74,9% uso internet para trabajar mientras que el 25,1% no lo uso para trabajar*
-\begin{figure}[!h]
-\centering
-\includegraphics[width=15cm, height =10cm]{pl3.png}
-\caption{Gráfico de barras con la cantidad de personas según frecuencia de uso de internet para trabajar. }
-\end{figure}
 
-\newpage 
+\fbox{\begin{minipage}{48em}
+No lo pedía pero gracias por el dato\end{minipage}}
+
+<!-- \begin{figure}[!h] -->
+<!-- \centering -->
+<!-- \includegraphics[width=15cm, height =10cm]{pl3.png} -->
+<!-- \caption{Gráfico de barras con la cantidad de personas según frecuencia de uso de internet para trabajar. } -->
+<!-- \end{figure} -->
+
+
 
 En base a esta figura respondé las siguientes preguntas:
 
-1. ¿Qué argumento del gráfico de barras, en `aes()`, me permite colorear las barras como se ven en la Figura 3? (Pista, aquí los colores usados son por defecto). 
+1. ¿Qué argumento del gráfico de barras, en `aes()`, me permite colorear las barras como se ven en la Figura 3? (Pista, aquí los colores usados son por defecto).
 *el argumento fill, y seleccionamos una variable discreta o categorica*
+
+\fbox{\begin{minipage}{48em}
+(3 Puntos) \end{minipage}}
+
 2. Incluí la linea de código que corresponde a definir el tamaño del texto del eje x en 8.
 ```{r,eval=FALSE}
 xlab("Uso Internet Para Trabajar", size=8)
 ```
-3. Incluí la linea de código que define las etiquetas que se muestran en el eje x (Pista, observá que usando `\n` se genera un salto de renglón para que las etiquetas queden como se ve en el gráfico). 
+
+\fbox{\begin{minipage}{48em}
+(0 Punto) $theme(axis.text.x = element_text(size = 8))$ \end{minipage}}
+
+3. Incluí la linea de código que define las etiquetas que se muestran en el eje x (Pista, observá que usando `\n` se genera un salto de renglón para que las etiquetas queden como se ve en el gráfico).
+
 ```{r, eval=FALSE}
 scale_x_continuous(labels = c("Nunca","Al menos una vez\al dia","Al menos una vez\a la semana","Al menos una vez\al mes","Al menos una vez\en estos 3 meses","Al menos una vez\al año"))
 ```
 
-# Ejercicio 2 (20 puntos)
+\fbox{\begin{minipage}{48em}
+(3 Puntos) la variable x es discreta por lo que tenés que usar discrete en el scale y para el salto de renglón no usaste la sugerencia\end{minipage}}
+
+# Ejercicio 2 (17/20 puntos)
 
 ## (2.5 puntos) *Pregunta 1*
 
 En clase vimos distintas visualizaciones para variables categóricas y mencionamos como posibles el gráfico de barras y el gráficos de torta.
 
 ¿Cuál es el argumento teórico para decir que es siempre preferible un gráfico de barras a uno de tortas para ver la distribución de una variable categórica?
+
 *Porque en el grafico de torta se entorpece la visualizacion, con el grafico de barras es mas facil comparar tamanios*
+
+\fbox{\begin{minipage}{48em}
+(1.5 Puntos) Porque estimar visualmente cantidades usando ángulos es más difícil que con otros elementos gráficos como valores en una escala común\end{minipage}}
+
+
 ## (2.5 puntos) *Pregunta 2*
 
 ¿Porqué es necesario utilizar `aspect.ratio = 1` en un diagrama de dispersión?
 *Para que se mantenga la proporcion de los ejes si estamos trabajando con variables en la misma unidad*
-## (15 puntos) *Pregunta 3* 
 
-Generá una función  `pedidos` que tenga como argumentos un vector numérico `cprod` cantidad de productos a comprar de cada tipo y un vector numérico `cdisp` con la cantidad disponible de dichos productos (ambos vectores del mismo largo) que devuelva 1 si se pude hacer el pedido y 0 en caso contrario. El pedido se puede realizar siempre que haya stock suficiente para cada producto, es decir que la cantidad disponible sea igual o mayor a la cantidad pedida. 
+\fbox{\begin{minipage}{48em}
+(1.5 Puntos) Las variables no tienen que estar necesariamente en la misma unidad. Es para no distorcionar la relación entre las variables analizadas, si no tengo en cuenta esto puedo ver una relación más o menos fuerte de lo que realmente es
+\end{minipage}}
+
+## (15 puntos) *Pregunta 3*
+
+Generá una función  `pedidos` que tenga como argumentos un vector numérico `cprod` cantidad de productos a comprar de cada tipo y un vector numérico `cdisp` con la cantidad disponible de dichos productos (ambos vectores del mismo largo) que devuelva 1 si se pude hacer el pedido y 0 en caso contrario. El pedido se puede realizar siempre que haya stock suficiente para cada producto, es decir que la cantidad disponible sea igual o mayor a la cantidad pedida.
 A su vez si alguno de los argumentos no es un vector numérico la función no debe ser evaluada y debe imprimir el mensaje "Argumento no numérico".
 ```{r}
-pedidos<-function(cprod,cdisp){
-  if(is.numeric(cprod)&is.numeric(cdisp)){
-    i=1
-    suma=0
-    while(i<=length(cprod)){
-      if(cdisp[i]>=cprod[i]){i=i+1
-      suma=suma+1} else{print(0)
-        i=length(cprod)+1}
-    }
-  }else{print("Argumento no numerico")}
-if(suma==length(cprod)){print(1)}else{print(0)}
-  }
+ pedidos<-function(cprod,cdisp){
+   if(is.numeric(cprod)&is.numeric(cdisp)){
+     i=1
+     suma=0
+     while(i<=length(cprod)){
+       if(cdisp[i]>=cprod[i]){i=i+1
+       suma=suma+1} else{print(0)
+         i=length(cprod)+1}
+     }
+   }else{print("Argumento no numerico")}
+ if(suma==length(cprod)){print(1)}else{print(0)}
+   }
 ```
-Comprobá que el resultado de la función sea  
-```{r}
+Comprobá que el resultado de la función sea
+```{r, eval=FALSE}
 pedidos(c(1,4,2),c(1,2,3))
 ```
-```{r}
-pedidos(c("A","B"),1:3)
+```{r,eval=FALSE}
+ pedidos(c("A","B"),1:3)
 ```
-`pedidos(c(1,4,2), 1:3) = 0`
+<!-- `pedidos(c(1,4,2), 1:3) = 0` -->
 
-`pedidos(c("A","B"), 1:3)= Argumento no numérico`
+<!-- `pedidos(c("A","B"), 1:3)= Argumento no numérico` -->
 
+\fbox{\begin{minipage}{48em}
+(14 Puntos) La funcion deberia devolver un solo valor 0 o 1,  en el primer ejemplo debería dar 0\end{minipage}}
 
+**REPO https://github.com/joaquin-viola/Joaquin-Viola-tareas-Stat-NT DESORDENADO PERO FUNCIONANDO + 6**
+**PONÉ TODAS LAS ACTIVIDADES Y TAREAS EN LAS CARPETAS QUE CORRESPONDAN**
 
+**COMENTARIO GENERAL DE ESTILO PARA EL CÓDIGO, TENÉS QUE DEJAR MÁS ESPACIOS PARA QUE TU CÓDIGO SEA MÁS CLARO  POR EJEMPLO LUEGO DE UNA COMA Y ESPACIOS ENTRE LOS IGUALES ASÍ COMO SALTOS DE RENGLÓN LUEGO DE %>% . RECORDÁ PONER fig.cap EN EL ENTRONO DE CÓDIGO CON EL TÍTULO DEL GÁFICO**
 
+**TOTAL DE PUNTOS 91/110  MUY BUEN TRABAJO! **
