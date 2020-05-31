@@ -32,16 +32,31 @@ Deben bajar los datos y guardarlos en formato csv.
 Debe leer con cuidado la información en los meta datos para entender los datos y responder correctamente cada pregunta.
 
 1. Leer los datos usando el paquete `readr` y guardarlos en un objeto llamado `dat`.
-```{r}
+```{r, eval=FALSE}
 library(tidyverse)
 emisiones<-read.csv("emisiones-de-co2-por-sector.csv")
 ```
+
+\fbox{\begin{minipage}{48em}
+Le puse eval false al codigo anterior ya que no estan esos datos en el repo. Además estas usando la funcion read.csv que es del paquete base. Agrego chunk con lectura de datos abajo.
+\end{minipage}}
+
+```{r}
+library(tidyverse)
+library(here)
+emisiones<-read_csv(here("tareas", "emisiones.csv"), locale = locale(encoding = "Latin1"))
+```
+
+
 
 2. Reestructure los datos con `pivot_longer` de forma de tener tres variables AÑO, una que contenga cada fuente y una que contenga el valor correspondiente a la emisión. Para esto debes especificar `cols`,  `names_to` y `values_to` para transformar los datos originales. Guardar los nuevos datos en un objeto llamado `dato_emision`.
 ```{r}
 dato_emision<-emisiones %>% pivot_longer(cols=c("CE_SP","CP","I_E","R","C_S_SP","T","I","A_P_M","NI","S_C","TOTAL", "Q_B","BI"), names_to="Fuente", values_to="valor")
 ```
 
+\fbox{\begin{minipage}{48em}
+Bien, acá podes pasarle de la 2 a la 14 para no tener que nombrarlas de a una c(2:14).
+\end{minipage}}
 
 Con los datos `dato_emision` respondé las sigueintes preguntas:
 
@@ -68,6 +83,11 @@ Las etiquetas de los ejes deben ser claras y describir las variables involucrada
 ```{r, message=FALSE}
 dato_emision %>% filter(Fuente %in% c("Q_B","T","BI","CE_SP", "I")) %>% ggplot(aes(x=AÑO,y=valor, colour=Fuente)) + geom_point() + geom_smooth(se=FALSE) + scale_color_brewer(palette = "Dark2") + labs(title="Evolucion contaminacion", subtitle="Evolucion a lo largo de los años de la contaminacion por fuente de contaminacion",x="Año", y="Contaminacion en Gg CO2", caption="Se registra un importante aumento de la quema de biomasa") + scale_color_discrete(labels=c("Aviones y Barcos", "Centrales Electricas","Industria y Construccion","Biomasa", "Transporte Urbano y suburbano" ))
 ```
+
+\fbox{\begin{minipage}{48em}
+Muy bien! acá en realidad no se pedia un suavizado sino un gráfico de lineas, el cual lo generamos usando geom line.
+\end{minipage}}
+
 7. Relplique el siguiente gráfico usando `ggplot2`.
  Incluir un `caption` en la figura con algún comentario de interés que describa el gráfico.
 ```{r}
@@ -82,8 +102,13 @@ Los puntos rojos indican los máximos locales  o picos de emisión de CO2 en Gg.
 Use `library(help = ggpmisc)` para ver todas las funciones de la librería ggpmisc e identificar cual o cuales necesita para replicar el gráfico.
 Incluir un `caption` en la figura con algún comentario de interés que describa el gráfico.
 ```{r}
+library(ggpmisc)
 emisiones%>%select(AÑO, TOTAL) %>% ggplot(aes(x=AÑO, y=TOTAL)) +geom_point(size=2) + geom_line() + labs(x="Año", y="Emision de CO2 en Gg", caption = "Desde el año 2012 se ha visto una baja en las emisiones de CO2") +stat_peaks(colour="red") + stat_peaks(geom = "text",vjust=-0.5, colour = "red")
 ```
+
+\fbox{\begin{minipage}{48em}
+Genial, tuve que agregar la libreria ggpmisc para usar la funcion stat peaks porque no estaba cargada en el código. Es importante que las librerías siempre aparzcan cargadas para poder knitear el documento.
+\end{minipage}}
 
 
 ## Ejercicio 2
@@ -101,12 +126,24 @@ Debe contener al menos 5 preguntas orientadoras y visualizaciones apropiadas par
 La exploración deberá contener las preguntas a responder sus respuestas con el correspondiente resumen de información o visualización. 
 Incluya en su exploración el análisis de la variabilidad tanto de  variables cuantitativas como cualitativas y covariaciones entre las mismas. 
 Recuerde que en las visualizaciones, las etiquetas de los ejes deben ser claras y describir las variables involucradas. Incluir un `caption` en la figura con algún comentario de interés que describa el gráfico.
-```{r}
+```{r, eval = FALSE}
 library(here)
 here("tareas")
 library(readxl)
 gastos<-read_excel("datos_gastos-por-actos-medicos-fondo-nacional-de-recursos-2017.xlsx")
 ```
+
+\fbox{\begin{minipage}{48em}
+Mismo problema, no aparecen los datos en el repo. Los subo y agrego codigo.
+\end{minipage}}
+
+```{r}
+library(here)
+here("tareas")
+library(readxl)
+gastos<-read_excel("datos_gastos.xlsx")
+```
+
 ## Proporcion del sexo de los pacientes
 ```{r}
 gastos%>%group_by(Sexo)%>% summarise(n=n()) %>% mutate(prop=n/sum(n)*100)
@@ -129,6 +166,11 @@ gastos%>%filter(Area_prestacion=="Trasplantes")%>%group_by(Prestacion)%>% summar
 gastos%>%filter(Area_prestacion=="Trasplantes")%>%group_by(Prestacion)%>% summarise(n=n())%>%mutate(prop=n/sum(n))%>%ggplot(aes(x=Prestacion,y=n,fill=Prestacion,label=n)) + geom_bar(stat="identity") + geom_text() + scale_fill_brewer(palette="Dark2") + ylab("Conteo")
 ```
 *Hubo en total 1775 trasplantes a travez del FNR en el 2017, de los cuales casi el 80% fueron trasplantes hepaticos*
+
+\fbox{\begin{minipage}{48em}
+En esta visualizacion la leyenda no aporta información adicional ya que está contenida en el texto del eje x, es mejor ocultarla ya que genera una sobrecarga innecesaria. 
+\end{minipage}}
+
 ## Veremos el promedio del costo por el area de prestacion
 ```{r}
 gastos%>%select(Area_prestacion,Importe)%>%group_by(Area_prestacion)%>%summarise(costo=sum(Importe),n=n(),prom=costo/n)
@@ -143,3 +185,8 @@ gastos%>%select(Area_prestacion,Importe)%>%group_by(Area_prestacion)%>%summarise
 depto<-gastos%>%group_by(Departamento_residencia)%>%summarise(cant=n(),importe=sum(Importe),prom=importe/cant)
 ```
 *Los promedios por departamento son bastantes cercanos entre si*
+
+
+\fbox{\begin{minipage}{48em}
+Buenisimo Joaquin, te falto agregar los datos al repo, te los agrego. Hubo algún detalle que te lo comenté entre lineas pero en general muy bien. El ejercicio 2 lo vamos a debatir en clase pero me parece que en general también estuvo bien! 9.75/10!
+\end{minipage}}
