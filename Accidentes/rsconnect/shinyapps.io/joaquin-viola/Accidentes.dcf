@@ -1,0 +1,12 @@
+name: Accidentes
+title: Accidentes
+username:
+account: joaquin-viola
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2490787
+bundleId: 3304507
+url: https://joaquin-viola.shinyapps.io/Accidentes/
+when: 1592874292.59343
+asMultiple: FALSE
+asStatic: FALSE
