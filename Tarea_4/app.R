@@ -42,3 +42,11 @@ server <- function(input, output){
     })
     }
 shinyApp(ui,server)
+
+
+#Comentario LC:
+#Excelente la app 10/10!
+#En la parte del summarise que usas para la tabla, capaz conviene redondear los valores
+#a dos cifras con la función round.
+#Falta el link a la app, agregalo cuando puedas,
+#Gracias!
